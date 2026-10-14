@@ -401,6 +401,7 @@
         transform: rotate(-0.4deg);
         cursor: pointer;
         user-select: none;
+        touch-action: manipulation;
         transition: transform 0.12s ease, box-shadow 0.15s ease, background 0.2s ease;
         line-height: 1.35;
       }
@@ -577,25 +578,6 @@
         flex-wrap: wrap;
         gap: 8px;
       }
-      .doc-nav-btns {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-      }
-      .doc-nav button {
-        font-family: var(--mono);
-        background: var(--ink);
-        color: var(--paper);
-        border: none;
-        padding: 6px 11px;
-        font-size: 11px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        cursor: pointer;
-        border-radius: 2px;
-      }
-      .doc-nav button:disabled { opacity: 0.35; cursor: not-allowed; }
-      .doc-nav button:hover:not(:disabled) { background: var(--stamp); }
 
       .panel {
         background: #fff;
@@ -644,6 +626,7 @@
         font-size: 14px;
         color: var(--ink);
         cursor: pointer;
+        touch-action: manipulation;
         flex: 0 0 24px;
       }
       .tab-step:hover { background: #c9cbcd; }
@@ -654,6 +637,7 @@
         border-radius: 2px;
         padding: 4px 3px;
         cursor: pointer;
+        touch-action: manipulation;
         text-align: center;
         font-family: var(--sans);
         transition: all 0.12s;
@@ -789,6 +773,7 @@
         text-transform: uppercase;
         cursor: pointer;
         user-select: none;
+        touch-action: manipulation;
         transition: background 0.12s, color 0.12s, transform 0.05s;
       }
       .key:active { transform: translateY(1px); }
@@ -1044,6 +1029,7 @@
           <div class="progress" id="progress"></div>
           <div class="console-links">
             <button class="stats-link" id="statsBtn" type="button">view petition record</button>
+            <button class="stats-link" id="todayLinkBtn" type="button" style="display:none;">today's docket</button>
             <button class="stats-link" id="randomLinkBtn" type="button">pull random record</button>
           </div>
         </aside>
@@ -1059,7 +1045,7 @@
           <button class="usa-btn outline" type="button" id="endStatsBtn">petition record</button>
           <button class="usa-btn outline" type="button" id="endRandomBtn">pull random record</button>
         </div>
-        <p class="src">unredacted* original: <a id="srcLink" target="_blank" rel="noopener"></a></p>
+        <p class="src">original DOJ record: <a id="srcLink" target="_blank" rel="noopener"></a></p>
         <p id="nextIn" style="margin-top:6px;font-size:12px;color:#5b616b;"></p>
       </div>
     </main>
@@ -1077,7 +1063,7 @@
         <div class="stat-nums" id="statNums"></div>
         <h4>words declassified per record</h4>
         <div id="statDist"></div>
-        <div class="end-actions">
+        <div class="end-actions" id="modalShareWrap">
           <button class="usa-btn share" type="button">copy results</button>
         </div>
       </div>
@@ -1327,6 +1313,7 @@
       function updateNavState() {
         $("navDaily").classList.toggle("active", state.isDaily);
         $("navRandom").classList.toggle("active", !state.isDaily);
+        $("todayLinkBtn").style.display = state.isDaily ? "none" : "";
         if (state.isDaily) {
           $("modeBadge").textContent = `DAILY DOCKET №${TODAY_DOCKET_NO}`;
           $("crumbCurrent").textContent = `Daily Docket №${TODAY_DOCKET_NO}`;
@@ -1793,7 +1780,7 @@
       }
 
       function recordStats(rev, total) {
-        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, last: null, dist: {}, totalWords: 0 };
+        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, last: null, lastScore: null, dist: {}, totalWords: 0 };
         if (!state.isDaily || state.docketNo !== TODAY_DOCKET_NO) return st;
         if (st.last === DAY) return st;
         st.played++;
@@ -1808,6 +1795,7 @@
           st.streak = 0;
         }
         st.last = DAY;
+        st.lastScore = rev;
         store(STATS_KEY, st);
         return st;
       }
@@ -1822,12 +1810,16 @@
           [st.best, "longest streak"],
         ].map(([n, l]) => `<div><b>${n}</b><span>${l}</span></div>`).join("");
         const max = Math.max(1, ...Object.values(st.dist));
-        const today = state.spans.filter((s) => s.status === "revealed").length;
-        const done = st.last === DAY && state.isDaily && state.docketNo === TODAY_DOCKET_NO;
+        const done = st.last === DAY;
+        const todayScore = typeof st.lastScore === "number"
+          ? st.lastScore
+          : state.spans.filter((s) => s.status === "revealed").length;
         $("statDist").innerHTML = [0, 1, 2, 3, 4].map((k) => {
           const v = st.dist[k] || 0;
-          return `<div class="drow"><span>${k}</span><i class="${done && k === today ? "now" : ""}" style="width:${8 + (92 * v) / max}%">${v}</i></div>`;
+          return `<div class="drow"><span>${k}</span><i class="${done && k === todayScore ? "now" : ""}" style="width:${8 + (92 * v) / max}%">${v}</i></div>`;
         }).join("");
+        const recordDone = state.spans.length > 0 && state.spans.every((s) => s.status !== "pending");
+        $("modalShareWrap").style.display = recordDone ? "" : "none";
       }
 
       function finish(animate) {
@@ -1915,6 +1907,7 @@
 
       $("navDaily").addEventListener("click", () => loadDocket(TODAY_DOCKET_NO, true));
       $("crumbHome").addEventListener("click", () => loadDocket(TODAY_DOCKET_NO, true));
+      $("todayLinkBtn").addEventListener("click", () => loadDocket(TODAY_DOCKET_NO, true));
 
       $("navRandom").addEventListener("click", loadRandomRecord);
       $("randomLinkBtn").addEventListener("click", loadRandomRecord);
