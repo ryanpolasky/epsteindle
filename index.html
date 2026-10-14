@@ -3,12 +3,123 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#112e51" />
-    <title>epsteindle.gov | Office of Interactive Declassification</title>
+
+    <title>Epsteindle - Daily Declassification Word Game</title>
     <meta
       name="description"
-      content="An official website of the Department of Redaction Affairs. Guess the blacked-out words in real public records."
+      content="Guess the blacked-out words in real pages from the DOJ Epstein release. Six petitions per redaction bar. A new public record on the docket every day, free in your browser."
     />
+    <meta
+      name="keywords"
+      content="epsteindle, daily word game, wordle parody, redaction game, declassification game, epstein files game, word puzzle, daily puzzle, free browser game, Ryan Polasky"
+    />
+    <meta name="author" content="Ryan Polasky" />
+    <meta name="creator" content="Ryan Polasky" />
+    <meta name="publisher" content="Ryan Polasky" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <link rel="canonical" href="https://epsteindle.org/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Epsteindle" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://epsteindle.org/" />
+    <meta property="og:title" content="Epsteindle - Daily Declassification Word Game" />
+    <meta
+      property="og:description"
+      content="Petition the black bars. Guess the redacted words in real pages from the DOJ Epstein release. One new record every day."
+    />
+    <meta property="og:image" content="https://epsteindle.org/og.webp" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Epsteindle splash: the Department of Redaction Affairs crest above the EPSTEINDLE wordmark and tagline 'Petition the black bars. Unredact real public records.'"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Epsteindle - Daily Declassification Word Game" />
+    <meta
+      name="twitter:description"
+      content="Petition the black bars. Guess the redacted words in real pages from the DOJ Epstein release. One new record every day."
+    />
+    <meta name="twitter:image" content="https://epsteindle.org/og.webp" />
+    <meta
+      name="twitter:image:alt"
+      content="Epsteindle splash: the Department of Redaction Affairs crest above the EPSTEINDLE wordmark and tagline 'Petition the black bars. Unredact real public records.'"
+    />
+
+    <meta name="theme-color" content="#112e51" />
+    <meta name="application-name" content="Epsteindle" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Epsteindle" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" type="image/svg+xml" href="/seal.svg?v=2" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://epsteindle.org/#ryan-polasky",
+            "name": "Ryan Polasky",
+            "givenName": "Ryan",
+            "familyName": "Polasky",
+            "url": "https://ryanpolasky.com/",
+            "jobTitle": "Software Engineer",
+            "sameAs": [
+              "https://ryanpolasky.com/",
+              "https://github.com/ryanpolasky",
+              "https://www.linkedin.com/in/ryan-polasky/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://epsteindle.org/#website",
+            "url": "https://epsteindle.org/",
+            "name": "Epsteindle",
+            "description": "Daily word game over real pages from the DOJ Epstein release.",
+            "inLanguage": "en",
+            "creator": { "@id": "https://epsteindle.org/#ryan-polasky" },
+            "author": { "@id": "https://epsteindle.org/#ryan-polasky" },
+            "publisher": { "@id": "https://epsteindle.org/#ryan-polasky" }
+          },
+          {
+            "@type": "VideoGame",
+            "@id": "https://epsteindle.org/#game",
+            "name": "Epsteindle",
+            "url": "https://epsteindle.org/",
+            "description": "Daily word deduction game built from real pages of the DOJ Epstein release. Petition each black redaction bar in six guesses to declassify the concealed word in place. New public record every day.",
+            "image": "https://epsteindle.org/og.webp",
+            "genre": ["Word Game", "Puzzle", "Satire", "Casual"],
+            "playMode": "SinglePlayer",
+            "gamePlatform": "Web Browser",
+            "applicationCategory": "GameApplication",
+            "operatingSystem": "Any",
+            "inLanguage": "en",
+            "isPartOf": { "@id": "https://epsteindle.org/#website" },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "author": { "@id": "https://epsteindle.org/#ryan-polasky" },
+            "creator": { "@id": "https://epsteindle.org/#ryan-polasky" },
+            "publisher": { "@id": "https://epsteindle.org/#ryan-polasky" }
+          }
+        ]
+      }
+    </script>
     <style>
       :root {
         --navy: #112e51;
@@ -35,7 +146,6 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      /* ---- official banner ---- */
       .gov-banner {
         background: var(--gray-bg);
         border-bottom: 1px solid var(--gray-line);
@@ -44,7 +154,7 @@
         color: #323a45;
       }
       .gov-banner .inner {
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -57,12 +167,27 @@
         color: var(--blue-dark);
         text-decoration: underline;
         cursor: pointer;
+        user-select: none;
       }
       .gov-banner .how span.caret { display: inline-block; transition: transform 0.15s; }
       .gov-banner .how.open .caret { transform: rotate(180deg); }
+      .gov-banner .sound-toggle {
+        margin-left: auto;
+        background: none;
+        border: 1px solid var(--gray-line);
+        border-radius: 2px;
+        padding: 2px 8px;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: #323a45;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .gov-banner .sound-toggle:hover { background: #e1e3e6; }
       .how-panel {
         display: none;
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 8px auto 4px;
         padding: 14px 16px;
         border: 1px solid var(--gray-line);
@@ -72,7 +197,7 @@
         color: #323a45;
       }
       .how-panel.show { display: block; }
-      .how-panel b { display: block; margin-bottom: 4px; }
+      .how-panel .lead { display: block; font-weight: 700; margin-bottom: 4px; }
       .how-panel .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
       .how-panel .dot {
         display: inline-block;
@@ -86,13 +211,12 @@
         font-weight: 700;
       }
 
-      /* ---- masthead ---- */
       .masthead {
         background: #fff;
         border-bottom: 1px solid var(--gray-line);
       }
       .masthead .inner {
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 0 auto;
         padding: 18px 16px;
         display: flex;
@@ -100,7 +224,8 @@
         gap: 16px;
         flex-wrap: wrap;
       }
-      .seal { width: 64px; height: 64px; flex: 0 0 64px; }
+      .seal { width: 68px; height: 68px; flex: 0 0 68px; display: block; }
+      .seal-sm { width: 44px; height: 44px; flex: 0 0 44px; display: block; }
       .agency-name {
         font-family: var(--serif);
         font-size: 11px;
@@ -126,7 +251,8 @@
         border: none;
         padding: 0 10px;
         font-size: 13px;
-        width: 170px;
+        width: 185px;
+        outline: none;
       }
       .masthead .search button {
         background: var(--blue);
@@ -136,11 +262,12 @@
         font-weight: 700;
         cursor: pointer;
       }
+      .masthead .search button:hover { background: var(--blue-dark); }
       nav.main-nav {
         background: var(--navy);
       }
       nav.main-nav ul {
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 0 auto;
         list-style: none;
         display: flex;
@@ -153,23 +280,29 @@
         font-size: 13px;
         font-weight: 700;
         padding: 12px 16px;
+        cursor: pointer;
       }
       nav.main-nav a:hover { background: var(--blue-dark); }
       nav.main-nav a.active { box-shadow: inset 0 -4px 0 var(--gold); }
       .breadcrumb {
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 0 auto;
         padding: 8px 16px;
         font-size: 12px;
         color: #5b616b;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 8px;
       }
-      .breadcrumb a { color: var(--blue-dark); text-decoration: none; }
+      .breadcrumb a { color: var(--blue-dark); text-decoration: none; cursor: pointer; }
+      .breadcrumb a:hover { text-decoration: underline; }
       .breadcrumb .sep { margin: 0 6px; color: var(--gray-line); }
 
-      /* ---- alert ---- */
       .alert {
-        max-width: 1060px;
-        margin: 18px auto 0;
+        max-width: 1120px;
+        margin: 14px auto 0;
         padding: 0 16px;
       }
       .alert .box {
@@ -182,9 +315,8 @@
       }
       .alert .box b { text-transform: uppercase; letter-spacing: 0.04em; }
 
-      /* ---- page body ---- */
       .page {
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 0 auto;
         padding: 20px 16px 40px;
       }
@@ -197,21 +329,20 @@
       .page .lede {
         font-size: 15px;
         color: #323a45;
-        max-width: 640px;
+        max-width: 680px;
         margin-bottom: 22px;
         line-height: 1.6;
       }
       .layout {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 310px;
-        gap: 22px;
+        grid-template-columns: minmax(0, 1fr) 370px;
+        gap: 24px;
         align-items: start;
       }
-      @media (max-width: 860px) {
+      @media (max-width: 900px) {
         .layout { grid-template-columns: minmax(0, 1fr); }
       }
 
-      /* ---- the scanned record ---- */
       .doc {
         position: relative;
         background:
@@ -238,10 +369,10 @@
         gap: 10px;
         border-bottom: 2px solid var(--ink);
         padding-bottom: 10px;
-        margin: 34px 0 18px;
+        margin: 0 0 18px;
         flex-wrap: wrap;
       }
-      .doc-head .from { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+      .doc-head .from { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
       .doc-head .caseno { font-size: 11px; color: #5a5340; }
       .doc h2 {
         font-size: clamp(15px, 2.4vw, 20px);
@@ -252,44 +383,100 @@
       .doc .sub { font-size: 12px; color: #5a5340; margin-bottom: 16px; font-style: italic; }
       .doc p {
         font-size: clamp(13px, 1.9vw, 15.5px);
-        line-height: 2.1;
+        line-height: 2.25;
         margin-bottom: 14px;
         text-align: justify;
       }
+
       .bar {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         position: relative;
         vertical-align: baseline;
         background: var(--redact);
         color: transparent;
-        border-radius: 1px;
-        padding: 0 3px;
-        transform: rotate(-0.6deg);
-        cursor: default;
+        border-radius: 2px;
+        padding: 1px 4px;
+        margin: 0 1px;
+        transform: rotate(-0.4deg);
+        cursor: pointer;
         user-select: none;
-        letter-spacing: 0.08em;
+        transition: transform 0.12s ease, box-shadow 0.15s ease, background 0.2s ease;
+        line-height: 1.35;
+      }
+      .bar:hover {
+        transform: rotate(0deg) translateY(-1px);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+      }
+      .bar .bar-num {
+        font-size: 9px;
+        font-weight: 700;
+        color: #b8b09c;
+        background: rgba(255,255,255,0.1);
+        padding: 0 3px;
+        border-radius: 1px;
+        margin-right: 3px;
+        letter-spacing: 0;
+        line-height: 1.3;
+      }
+      .bar.selected .bar-num {
+        background: var(--gold);
+        color: var(--ink);
+      }
+      .bar .bcells {
+        display: inline-flex;
+        gap: 1px;
+      }
+      .bar .bch {
+        display: inline-block;
+        min-width: 0.62em;
+        text-align: center;
+        font-weight: 700;
+        border-bottom: 1px solid rgba(255,255,255,0.22);
+        color: transparent;
+        line-height: 1.15;
+      }
+      .bar .bch.known {
+        color: #6ee787;
+        border-bottom-color: #2e8540;
+      }
+      .bar .bch.draft {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
       }
       .bar.active {
-        cursor: pointer;
-        animation: barpulse 1.4s ease-in-out infinite;
+        transform: rotate(0deg);
+        animation: barpulse 1.5s ease-in-out infinite;
       }
       @keyframes barpulse {
-        0%, 100% { box-shadow: 0 0 0 2px rgba(139,31,31,0.9); }
-        50% { box-shadow: 0 0 0 4px rgba(139,31,31,0.35); }
+        0%, 100% { box-shadow: 0 0 0 2px rgba(139,31,31,0.95), 0 3px 10px rgba(0,0,0,0.25); }
+        50% { box-shadow: 0 0 0 4px rgba(139,31,31,0.4), 0 3px 10px rgba(0,0,0,0.25); }
       }
       .bar.revealed {
-        background: transparent;
+        background: rgba(139,31,31,0.08);
         color: var(--stamp);
         font-weight: 700;
         transform: none;
         box-shadow: none;
-        animation: reveal 0.5s ease;
-        padding: 0;
+        animation: reveal 0.45s ease;
+        padding: 0 4px;
+        border-bottom: 2px solid rgba(139,31,31,0.45);
+      }
+      .bar.revealed.selected {
+        background: rgba(139,31,31,0.18);
+        box-shadow: 0 0 0 2px var(--stamp);
       }
       @keyframes reveal {
-        0% { background: var(--redact); color: transparent; }
-        60% { background: var(--stamp); color: var(--stamp); }
-        100% { background: transparent; color: var(--stamp); }
+        0% { background: var(--redact); color: transparent; transform: scale(1.06); }
+        60% { background: var(--stamp); color: #fff; }
+        100% { background: rgba(139,31,31,0.08); color: var(--stamp); transform: scale(1); }
+      }
+      .bar.denied {
+        background: #1c1917;
+        padding: 1px 6px;
+      }
+      .bar.denied.selected {
+        box-shadow: 0 0 0 2px var(--stamp);
       }
       .bar.denied::after {
         content: "DENIED";
@@ -297,82 +484,119 @@
         inset: 0;
         display: grid;
         place-items: center;
-        color: rgba(232,224,204,0.75);
+        color: #f3c6c6;
+        background: rgba(139, 31, 31, 0.72);
         font-size: 9px;
-        letter-spacing: 0.3em;
-        transform: rotate(0.6deg);
+        font-weight: 700;
+        letter-spacing: 0.26em;
+        transform: rotate(0.4deg);
+        border-radius: 2px;
       }
-      .bar.doj { background: #000; transform: rotate(0.4deg); cursor: help; padding: 0 2px; }
+      .bar.doj {
+        background: #000;
+        transform: rotate(0.4deg);
+        cursor: help;
+        padding: 0 3px;
+        color: transparent;
+      }
+      .bar.doj:hover {
+        transform: rotate(0.4deg);
+        box-shadow: none;
+      }
+
       .loading { font-style: italic; color: #5a5340; text-align: center; padding: 30px 0; }
       .src { font-size: 12px; margin-top: 10px; color: #5b616b; }
       .src a { color: var(--blue-dark); }
       .end-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+      .usa-btn {
+        display: inline-block;
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 18px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: var(--sans);
+        transition: background 0.12s;
+      }
+      .usa-btn:hover { background: var(--blue-dark); }
       .usa-btn.outline { background: #fff; color: var(--blue); box-shadow: inset 0 0 0 2px var(--blue); }
       .usa-btn.outline:hover { background: #f1f1f1; }
+      .usa-btn.sm { padding: 6px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+      .console-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
       .stats-link {
-        margin-top: 10px; background: none; border: none; padding: 0; cursor: pointer;
-        font: inherit; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+        background: none; border: none; padding: 0; cursor: pointer;
+        font: inherit; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
         color: var(--blue-dark); text-decoration: underline;
       }
+      .stats-link:hover { color: var(--navy); }
+
       .modal {
-        position: fixed; inset: 0; background: rgba(17,46,81,0.55); display: none;
+        position: fixed; inset: 0; background: rgba(17,46,81,0.58); display: none;
         place-items: center; z-index: 50; padding: 16px;
+        backdrop-filter: blur(2px);
       }
       .modal.show { display: grid; }
       .modal .card {
-        background: #fff; width: min(420px, 100%); border-top: 8px solid var(--navy);
+        background: #fff; width: min(480px, 100%); max-height: 88vh; overflow-y: auto;
+        border-top: 8px solid var(--navy);
         padding: 22px 22px 18px; position: relative; box-shadow: 0 18px 50px rgba(0,0,0,0.35);
       }
       .modal h3 { font-family: var(--serif); color: var(--navy); font-size: 20px; margin-bottom: 2px; }
       .modal .formno { font-size: 10px; letter-spacing: 0.14em; color: #5b616b; text-transform: uppercase; margin-bottom: 16px; }
-      .modal .x { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 22px; cursor: pointer; color: #5b616b; }
+      .modal .x { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 24px; cursor: pointer; color: #5b616b; line-height: 1; }
       .stat-nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center; margin-bottom: 18px; }
-      .stat-nums b { display: block; font-family: var(--serif); font-size: 28px; color: var(--ink); }
+      .stat-nums b { display: block; font-family: var(--serif); font-size: 26px; color: var(--ink); }
       .stat-nums span { font-size: 10px; line-height: 1.2; color: #5b616b; text-transform: uppercase; letter-spacing: 0.05em; }
       .modal h4 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
       .drow { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 12px; }
-      .drow span { width: 12px; font-weight: 700; }
-      .drow i { font-style: normal; background: #565c65; color: #fff; text-align: right; padding: 2px 6px; font-weight: 700; min-width: 22px; }
+      .drow span { width: 14px; font-weight: 700; }
+      .drow i { font-style: normal; background: #565c65; color: #fff; text-align: right; padding: 2px 6px; font-weight: 700; min-width: 24px; border-radius: 2px; }
       .drow i.now { background: var(--good); }
       .modal .end-actions { margin-top: 16px; }
-      .stamp {
-        position: absolute;
-        top: 10px;
-        right: 22px;
-        border: 3px double var(--stamp);
-        color: var(--stamp);
-        padding: 6px 12px;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        transform: rotate(6deg);
-        opacity: 0.85;
-        text-transform: uppercase;
-        pointer-events: none;
-      }
+
       .doc-nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 14px;
+        margin-top: 16px;
+        padding-top: 10px;
+        border-top: 1px dashed rgba(28, 26, 21, 0.25);
         font-size: 12px;
         color: #5a5340;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .doc-nav-btns {
+        display: flex;
+        gap: 6px;
+        align-items: center;
       }
       .doc-nav button {
         font-family: var(--mono);
         background: var(--ink);
         color: var(--paper);
         border: none;
-        padding: 9px 16px;
-        font-size: 12px;
-        letter-spacing: 0.12em;
+        padding: 6px 11px;
+        font-size: 11px;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         cursor: pointer;
+        border-radius: 2px;
       }
       .doc-nav button:disabled { opacity: 0.35; cursor: not-allowed; }
       .doc-nav button:hover:not(:disabled) { background: var(--stamp); }
 
-      /* ---- official terminal panel ---- */
       .panel {
         background: #fff;
         border: 1px solid var(--gray-line);
@@ -381,49 +605,180 @@
         padding: 16px;
         position: sticky;
         top: 16px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      }
+      .panel-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
       }
       .panel h3 {
         font-size: 12px;
         letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--navy);
-        margin-bottom: 4px;
+        margin-bottom: 2px;
       }
       .panel .terminal-id {
         font-size: 11px;
         color: #5b616b;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
-      .prompt-line { font-size: 13px; color: #323a45; margin-bottom: 12px; min-height: 36px; line-height: 1.5; }
-      .grid { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
-      .row { display: grid; grid-template-columns: repeat(var(--cols, 5), minmax(0, 34px)); gap: 5px; }
+
+      .bar-tabs {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e1e3e6;
+      }
+      .tab-step {
+        background: #dfe1e2;
+        border: none;
+        border-radius: 2px;
+        width: 24px;
+        height: 30px;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--ink);
+        cursor: pointer;
+        flex: 0 0 24px;
+      }
+      .tab-step:hover { background: #c9cbcd; }
+      .bar-tab {
+        flex: 1;
+        background: #f4f5f7;
+        border: 1px solid #c9cbcd;
+        border-radius: 2px;
+        padding: 4px 3px;
+        cursor: pointer;
+        text-align: center;
+        font-family: var(--sans);
+        transition: all 0.12s;
+        min-width: 0;
+      }
+      .bar-tab:hover { background: #e8eaed; }
+      .bar-tab.active {
+        border-color: var(--navy);
+        background: #e8f0fa;
+        box-shadow: inset 0 -2px 0 var(--navy);
+      }
+      .bar-tab.revealed {
+        border-color: var(--good);
+        background: #ecf7ee;
+      }
+      .bar-tab.revealed.active {
+        box-shadow: inset 0 -2px 0 var(--good);
+      }
+      .bar-tab.denied {
+        border-color: var(--stamp);
+        background: #fbeaea;
+      }
+      .bar-tab.denied.active {
+        box-shadow: inset 0 -2px 0 var(--stamp);
+      }
+      .bar-tab .t-top {
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--navy);
+        letter-spacing: 0.03em;
+      }
+      .bar-tab .t-sub {
+        display: block;
+        font-size: 9.5px;
+        color: #5b616b;
+        margin-top: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .bar-tab.revealed .t-sub { color: var(--good); font-weight: 700; }
+      .bar-tab.denied .t-sub { color: var(--stamp); font-weight: 700; }
+
+      .prompt-line {
+        font-size: 12.5px;
+        color: #323a45;
+        margin-bottom: 10px;
+        min-height: 36px;
+        line-height: 1.45;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 14px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: repeat(var(--cols, 5), minmax(0, 36px));
+        gap: var(--gap, 5px);
+        justify-content: center;
+      }
       .tile {
         aspect-ratio: 1;
-        border: 1px solid #565c65;
+        border: 1.5px solid #8d9297;
         display: grid;
         place-items: center;
-        font-size: 15px;
+        font-size: var(--tfont, 15px);
         font-weight: 700;
         text-transform: uppercase;
         color: var(--ink);
         background: #fff;
+        user-select: none;
+        transition: border-color 0.1s, transform 0.1s;
       }
-      .tile.filled { border-color: var(--navy); animation: pop 0.08s ease; }
+      .tile.cursor {
+        border-color: var(--blue);
+        box-shadow: inset 0 -2px 0 var(--blue);
+      }
+      .tile.ghost {
+        color: rgba(46, 133, 64, 0.36);
+        border-style: dashed;
+        border-color: rgba(46, 133, 64, 0.55);
+      }
+      .tile.filled {
+        border-color: var(--navy);
+        border-style: solid;
+        color: var(--ink);
+        animation: pop 0.09s ease;
+      }
       @keyframes pop { 50% { transform: scale(1.12); } }
-      .tile.good { background: var(--good); border-color: var(--good); color: #fff; }
-      .tile.mid { background: var(--mid); border-color: var(--mid); color: #fff; }
-      .tile.bad { background: #dfe1e2; border-color: #dfe1e2; color: #757575; }
+      .tile.flip {
+        animation: flipTile 0.36s ease forwards;
+      }
+      @keyframes flipTile {
+        0% { transform: scaleY(1); }
+        50% { transform: scaleY(0.08); }
+        100% { transform: scaleY(1); }
+      }
+      .tile.bounce {
+        animation: winBounce 0.45s ease;
+      }
+      @keyframes winBounce {
+        0%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-7px); }
+      }
+      .tile.good { background: var(--good); border-color: var(--good); border-style: solid; color: #fff; }
+      .tile.mid { background: var(--mid); border-color: var(--mid); border-style: solid; color: #fff; }
+      .tile.bad { background: #dfe1e2; border-color: #dfe1e2; border-style: solid; color: #6e7378; }
       .row.shake { animation: shake 0.4s; }
       @keyframes shake {
         20%, 60% { transform: translateX(-5px); }
         40%, 80% { transform: translateX(5px); }
       }
-      .kbd { display: flex; flex-direction: column; gap: 6px; }
+      .kbd { display: flex; flex-direction: column; gap: 5px; }
       .kbd-row { display: flex; gap: 4px; justify-content: center; }
       .key {
         flex: 1;
         max-width: 34px;
-        height: 42px;
+        height: 40px;
         background: #dfe1e2;
         color: var(--ink);
         border: none;
@@ -433,37 +788,30 @@
         font-weight: 700;
         text-transform: uppercase;
         cursor: pointer;
+        user-select: none;
+        transition: background 0.12s, color 0.12s, transform 0.05s;
       }
-      .key.wide { max-width: 52px; font-size: 10px; }
+      .key:active { transform: translateY(1px); }
+      .key.wide { max-width: 54px; font-size: 10px; }
       .key:hover { background: #c9cbcd; }
       .key.good { background: var(--good); color: #fff; }
       .key.mid { background: var(--mid); color: #fff; }
-      .key.bad { background: #adadad; color: #565656; }
+      .key.bad { background: #a8adb2; color: #4a4e52; }
+
       .progress {
-        margin-top: 14px;
+        margin-top: 12px;
         padding-top: 10px;
         border-top: 1px solid var(--gray-line);
         font-size: 11px;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         color: #5b616b;
         text-transform: uppercase;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
       .progress b { color: var(--navy); }
-      .usa-btn {
-        display: inline-block;
-        background: var(--blue);
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        padding: 10px 20px;
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-        font-family: var(--sans);
-      }
-      .usa-btn:hover { background: var(--blue-dark); }
 
-      /* ---- end card ---- */
       .endcard {
         margin-top: 22px;
         border: 1px solid var(--gray-line);
@@ -472,6 +820,9 @@
         padding: 22px;
         text-align: center;
       }
+      .endcard.granted {
+        border-top-color: var(--good);
+      }
       .endcard h2 {
         font-family: var(--serif);
         color: var(--stamp);
@@ -479,16 +830,63 @@
         margin-bottom: 8px;
         font-size: 22px;
       }
+      .endcard.granted h2 {
+        color: var(--good);
+      }
       .endcard p { font-size: 13.5px; line-height: 1.7; color: #323a45; }
+      .end-breakdown {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 8px;
+        max-width: 680px;
+        margin: 14px auto;
+        text-align: left;
+      }
+      .end-bar-item {
+        border: 1px solid #d6d8db;
+        padding: 8px 10px;
+        border-radius: 2px;
+        background: #f9fafb;
+        font-size: 12px;
+        cursor: pointer;
+        transition: border-color 0.12s, background 0.12s;
+      }
+      .end-bar-item:hover {
+        border-color: var(--navy);
+        background: #f0f4f8;
+      }
+      .end-bar-item .eb-head {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #5b616b;
+        margin-bottom: 3px;
+      }
+      .end-bar-item .eb-word {
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--navy);
+        letter-spacing: 0.04em;
+      }
+      .end-bar-item.denied .eb-word {
+        color: var(--stamp);
+      }
+      .end-bar-item .eb-trail {
+        margin-top: 4px;
+        font-size: 11px;
+        letter-spacing: 1px;
+      }
 
-      /* ---- footer ---- */
       footer.gov {
         background: var(--navy);
         color: #fff;
         margin-top: 30px;
       }
       .gov .cols {
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 0 auto;
         padding: 28px 16px;
         display: grid;
@@ -509,17 +907,17 @@
         color: #dce4ef;
         text-decoration: none;
         font-size: 13px;
+        cursor: pointer;
       }
       .gov a:hover { text-decoration: underline; }
       .gov .agency-block { font-size: 13px; line-height: 1.6; color: #b8c4d6; }
       .gov .tagline {
-        max-width: 1060px;
+        max-width: 1120px;
         margin: 0 auto;
-        padding: 0 16px 24px;
+        padding: 16px 16px 24px;
         font-size: 12px;
         color: #8fa3bf;
         border-top: 1px solid #2a4a73;
-        padding-top: 16px;
       }
       @media (max-width: 560px) {
         .doc p { text-align: left; }
@@ -529,6 +927,15 @@
     </style>
   </head>
   <body>
+    <noscript>
+      <h1>Epsteindle - Daily Declassification Word Game</h1>
+      <p>
+        Epsteindle is a free daily word puzzle over real pages from the DOJ Epstein release.
+        Petition each black redaction bar in six guesses to declassify the concealed word in place.
+        A new public record drops every day.
+      </p>
+      <p>This game requires JavaScript to play. Please enable it in your browser.</p>
+    </noscript>
     <div class="gov-banner">
       <div class="inner">
         <span class="flag">
@@ -545,17 +952,18 @@
         </span>
         <span>An official website of the <b>Department of Redaction Affairs</b></span>
         <a class="how" id="howBtn">Here's how you know <span class="caret">▾</span></a>
+        <button class="sound-toggle" id="soundBtn" type="button">Audio: On</button>
       </div>
       <div class="how-panel" id="howPanel">
         <div class="cols">
           <div>
             <span class="dot">.gov</span>
-            <b>Official websites use .gov</b>
-            A <b>epsteindle.gov</b> website belongs to an official government-adjacent organization in the United States, probably.
+            <span class="lead">Official websites use .gov</span>
+            An <b>epsteindle.gov</b> website belongs to an official government-adjacent organization in the United States, probably.
           </div>
           <div>
             <span class="dot">🔒</span>
-            <b>Secure .gov websites use HTTPS</b>
+            <span class="lead">Secure .gov websites use HTTPS</span>
             A lock or https:// means the blacked-out words you guess are safely transmitted to absolutely no one. All guessing happens on your machine. The government couldn't even if it wanted to.
           </div>
         </div>
@@ -564,20 +972,13 @@
 
     <div class="masthead">
       <div class="inner">
-        <svg class="seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="40" cy="40" r="38" fill="#112e51"/>
-          <circle cx="40" cy="40" r="33" fill="none" stroke="#fdb81e" stroke-width="1.5"/>
-          <text x="40" y="30" text-anchor="middle" fill="#fff" font-size="7" font-family="Georgia,serif" letter-spacing="1">DEPARTMENT OF</text>
-          <text x="40" y="38" text-anchor="middle" fill="#fff" font-size="6" font-family="Georgia,serif" letter-spacing="0.5">REDACTION AFFAIRS</text>
-          <rect x="24" y="44" width="32" height="7" fill="#141311"/>
-          <text x="40" y="60" text-anchor="middle" fill="#fdb81e" font-size="5.5" font-family="Georgia,serif">E PLURIBUS REDACTUM</text>
-        </svg>
+        <img class="seal" src="seal.svg?v=2" alt="Department of Redaction Affairs" />
         <div>
           <div class="agency-name">Department of Redaction Affairs</div>
-          <div class="site-title">Office of Interactive Declassification <span class="tld">· epsteindle.gov</span></div>
+          <div class="site-title">Office of Interactive Declassification <span class="tld">· epsteindle.org</span></div>
         </div>
-        <form class="search" onsubmit="return false">
-          <input type="search" placeholder="Search redacted terms…" aria-label="Search" />
+        <form class="search" id="searchForm">
+          <input type="search" id="searchInput" placeholder="Search redacted terms..." aria-label="Search" />
           <button type="submit">⌕</button>
         </form>
       </div>
@@ -585,21 +986,24 @@
 
     <nav class="main-nav">
       <ul>
-        <li><a href="#" class="active">Home</a></li>
+        <li><a id="navDaily" class="active">Daily Docket</a></li>
+        <li><a id="navRandom">Pull Random Record</a></li>
+        <li><a id="navStats">Petition Record</a></li>
         <li><a href="#" onclick="return denied(event)">Public Records</a></li>
         <li><a href="#" onclick="return denied(event)">FOIA Requests</a></li>
-        <li><a href="#" onclick="return denied(event)">Declassification Terminal</a></li>
-        <li><a href="#" onclick="return denied(event)">About the Office</a></li>
-        <li><a href="#" onclick="return denied(event)">Contact</a></li>
+        <li><a href="#" onclick="return denied(event)">Inspector General</a></li>
       </ul>
     </nav>
 
     <div class="breadcrumb">
-      <a href="#">Home</a><span class="sep">›</span><a href="#" onclick="return denied(event)">Records</a><span class="sep">›</span>Interactive Declassification Terminal
+      <div>
+        <a id="crumbHome">Home</a><span class="sep">›</span><a href="#" onclick="return denied(event)">Records</a><span class="sep">›</span><span id="crumbCurrent">Interactive Declassification Terminal</span>
+      </div>
+      <div id="modeBadge" style="font-family:var(--mono);font-size:11px;color:var(--navy);font-weight:700;"></div>
     </div>
 
     <div class="alert">
-      <div class="box">
+      <div class="box" id="alertBox">
         <b>Notice:</b> The passages below are verbatim reproductions of real public records. One new record is pulled from the DOJ's own Epstein release every day. The black bars, however, are applied by this office for training purposes. <b>The government did it better.</b>
       </div>
     </div>
@@ -607,45 +1011,53 @@
     <main class="page">
       <h1>Interactive Declassification Terminal</h1>
       <p class="lede">
-        Citizens may petition the black bars directly. Guess the word concealed beneath each
-        redaction. Correct petitions declassify the word in place. Six failed petitions and the
-        word remains sealed pursuant to §52.3(b) of the Full Disclosure Act.*
+        Citizens may petition the black bars directly. Click any redaction bar to switch targets at
+        any time without losing prior petitions. Correct petitions declassify the word in place. Six
+        failed petitions and the word remains sealed pursuant to §52.3(b) of the Full Disclosure Act.*
       </p>
 
       <div class="layout">
         <section class="doc" id="doc">
-          <div class="stamp">UNSEALED*</div>
           <div class="doc-head">
             <div class="from" id="docFrom"></div>
             <div class="caseno" id="docCase"></div>
           </div>
           <h2 id="docTitle"></h2>
           <div class="sub" id="docSub"></div>
-          <div id="docBody"><p class="loading">Retrieving today's record from the archive…</p></div>
+          <div id="docBody"><p class="loading">Retrieving today's record from the archive...</p></div>
           <div class="doc-nav">
             <span id="docIndex"></span>
-            <span class="caseno">one record per day. same for everyone.</span>
+            <span class="caseno" id="docNote">one record per day. same for everyone.</span>
           </div>
         </section>
 
         <aside class="panel">
-          <h3>Petition Console</h3>
+          <div class="panel-top">
+            <h3>Petition Console</h3>
+            <span style="font-size:10px;color:#5b616b;font-family:var(--mono);" id="barHintKey">TAB TO SWITCH</span>
+          </div>
           <div class="terminal-id">TERMINAL 7-G · FORM ODR-88 (REV. 07/2025)</div>
+          <div class="bar-tabs" id="barTabs"></div>
           <div class="prompt-line" id="promptLine"></div>
           <div class="grid" id="grid"></div>
           <div class="kbd" id="kbd"></div>
           <div class="progress" id="progress"></div>
-          <button class="stats-link" id="statsBtn">view your petition record</button>
+          <div class="console-links">
+            <button class="stats-link" id="statsBtn" type="button">view petition record</button>
+            <button class="stats-link" id="randomLinkBtn" type="button">pull random record</button>
+          </div>
         </aside>
       </div>
 
       <div class="endcard" id="endWrap" style="display:none;">
         <h2 id="endTitle"></h2>
         <p id="endBody"></p>
-        <div id="shareSquares" style="margin:14px 0;font-size:22px;letter-spacing:4px;"></div>
-        <div class="end-actions">
-          <button class="usa-btn share">copy results</button>
-          <button class="usa-btn outline" onclick="openStats()">petition record</button>
+        <div id="shareSquares" style="margin:12px 0 6px;font-size:22px;letter-spacing:4px;"></div>
+        <div class="end-breakdown" id="endBreakdown"></div>
+        <div class="end-actions" style="margin-top:14px;">
+          <button class="usa-btn share" type="button">copy results</button>
+          <button class="usa-btn outline" type="button" id="endStatsBtn">petition record</button>
+          <button class="usa-btn outline" type="button" id="endRandomBtn">pull random record</button>
         </div>
         <p class="src">unredacted* original: <a id="srcLink" target="_blank" rel="noopener"></a></p>
         <p id="nextIn" style="margin-top:6px;font-size:12px;color:#5b616b;"></p>
@@ -654,34 +1066,44 @@
 
     <div class="modal" id="statsModal">
       <div class="card">
-        <button class="x" aria-label="close">&times;</button>
-        <h3>Your Petition Record</h3>
-        <div class="formno">form odr-88a · retained indefinitely, allegedly</div>
+        <button class="x" aria-label="close" type="button">&times;</button>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <img class="seal-sm" src="seal.svg?v=2" alt="" />
+          <div>
+            <h3>Your Petition Record</h3>
+            <div class="formno" style="margin-bottom:0;">form odr-88a · retained indefinitely, allegedly</div>
+          </div>
+        </div>
         <div class="stat-nums" id="statNums"></div>
         <h4>words declassified per record</h4>
         <div id="statDist"></div>
-        <div class="end-actions"><button class="usa-btn share">copy results</button></div>
+        <div class="end-actions">
+          <button class="usa-btn share" type="button">copy results</button>
+        </div>
       </div>
     </div>
 
     <footer class="gov">
       <div class="cols">
         <div>
-          <h4>Department of Redaction Affairs</h4>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <img class="seal-sm" src="seal.svg?v=2" alt="" />
+            <h4 style="margin-bottom:0;">Department of Redaction Affairs</h4>
+          </div>
           <div class="agency-block">
             Office of Interactive Declassification<br/>
             1400 Blackmarker Blvd NW<br/>
             Washington, DC 20000<br/><br/>
             1-800-REDACT-ED<br/>
-            petitions@epsteindle.gov
+            petitions@epsteindle.org
           </div>
         </div>
         <div>
           <h4>Records</h4>
           <ul>
             <li><a href="#" onclick="return denied(event)">Reading Room</a></li>
-            <li><a href="#" onclick="return denied(event)">FOIA Library</a></li>
-            <li><a href="#" onclick="return denied(event)">Mandatory Declassification Review</a></li>
+            <li><a id="footRandom">Random Backlog Record</a></li>
+            <li><a id="footStats">Mandatory Review Stats</a></li>
             <li><a href="#" onclick="return denied(event)">Black Binder, Phase 1</a></li>
           </ul>
         </div>
@@ -689,7 +1111,7 @@
           <h4>Resources</h4>
           <ul>
             <li><a href="#" onclick="return denied(event)">Privacy Act</a></li>
-            <li><a href="#" onclick="return denied(event)">Exemptions (b)(1)–(b)(9)</a></li>
+            <li><a href="#" onclick="return denied(event)">Exemptions (b)(1)-(b)(9)</a></li>
             <li><a href="#" onclick="return denied(event)">Plain Language</a></li>
             <li><a href="#" onclick="return denied(event)">No FEAR Act</a></li>
           </ul>
@@ -706,10 +1128,10 @@
       </div>
       <div class="tagline">
         *There is no Full Disclosure Act. Every record on the docket is a verbatim excerpt of a real page
-        from the DOJ Epstein Library (Data Sets 1–12, released under the Epstein Files Transparency Act),
+        from the DOJ Epstein Library (Data Sets 1-12, released under the Epstein Files Transparency Act),
         via the text corpus at github.com/rhowardstone/Epstein-research-data. Solid black bars marked as
-        such were redacted by the actual government; the rest are ours. *Unsealed by you, allegedly.
-        This is a parody site. It is not an official website.
+        such were redacted by the actual government; the rest are ours. This is a parody site. It is not
+        an official website.
       </div>
     </footer>
 
@@ -717,18 +1139,163 @@
       const MAX_GUESSES = 6;
       const EPOCH = 20738;
       const DAY = Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5);
-      const DOCKET_NO = DAY - EPOCH + 1;
+      const TODAY_DOCKET_NO = Math.max(1, DAY - EPOCH + 1);
       const SAVE_KEY = "epsteindle-daily";
+      const ARCHIVE_KEY = "epsteindle-records-v2";
       const STATS_KEY = "epsteindle-stats";
-      const state = { doc: null, spans: [], guess: "", row: 0, keyState: {}, busy: false };
+      const SOUND_KEY = "epsteindle-sound";
+
+      const state = {
+        totalCount: 0,
+        fileIdx: 0,
+        docketNo: TODAY_DOCKET_NO,
+        isDaily: true,
+        doc: null,
+        spans: [],
+        activeIdx: 0,
+        busy: false,
+        sound: true,
+        audioCtx: null,
+      };
       let WORDS = new Set();
 
       const load = (k) => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
       const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
-      const saved = load(SAVE_KEY);
-      const persist = () => store(SAVE_KEY, { day: DAY, efta: state.doc.efta, statuses: state.spans.map((s) => s.status) });
       const $ = (id) => document.getElementById(id);
+
+      const savedSound = load(SOUND_KEY);
+      if (typeof savedSound === "boolean") state.sound = savedSound;
+
+      function updateSoundBtn() {
+        $("soundBtn").textContent = `Audio: ${state.sound ? "On" : "Off"}`;
+      }
+      updateSoundBtn();
+      $("soundBtn").addEventListener("click", () => {
+        state.sound = !state.sound;
+        store(SOUND_KEY, state.sound);
+        updateSoundBtn();
+        if (state.sound) playTone(520, 0.04, "triangle", 0.06);
+      });
+
+      function playTone(freq, dur, type = "triangle", gainVal = 0.05, delay = 0) {
+        if (!state.sound) return;
+        try {
+          if (!state.audioCtx) state.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const ctx = state.audioCtx;
+          if (ctx.state === "suspended") ctx.resume();
+          const t0 = ctx.currentTime + delay;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, t0);
+          gain.gain.setValueAtTime(gainVal, t0);
+          gain.gain.exponentialRampToValueAtTime(0.0008, t0 + dur);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t0);
+          osc.stop(t0 + dur);
+        } catch {}
+      }
+
+      function sfxKey() { playTone(320 + Math.random() * 60, 0.025, "triangle", 0.04); }
+      function sfxBack() { playTone(210, 0.03, "sine", 0.04); }
+      function sfxFlip(i, res) {
+        const map = { good: 587.33, mid: 440, bad: 261.63 };
+        playTone(map[res] || 300, 0.06, "triangle", 0.05, (i * 85) / 1000);
+      }
+      function sfxWin() {
+        [523.25, 659.25, 783.99, 1046.5].forEach((f, idx) => playTone(f, 0.12, "triangle", 0.06, idx * 0.07));
+      }
+      function sfxDenied() {
+        playTone(155, 0.14, "sawtooth", 0.05, 0);
+        playTone(130, 0.22, "sawtooth", 0.05, 0.12);
+      }
+
+      function fileIdxForDocket(docketNo, count) {
+        return (((docketNo - 1) % count) + count) % count;
+      }
+
+      function scoreGuess(guessStr, ansStr) {
+        const ans = ansStr.split("");
+        const guess = guessStr.split("");
+        const used = Array(ans.length).fill(false);
+        const result = Array(ans.length).fill("bad");
+        guess.forEach((ch, i) => {
+          if (ch === ans[i]) {
+            result[i] = "good";
+            used[i] = true;
+          }
+        });
+        guess.forEach((ch, i) => {
+          if (result[i] === "good") return;
+          const j = ans.findIndex((a, ai) => !used[ai] && a === ch);
+          if (j !== -1) {
+            result[i] = "mid";
+            used[j] = true;
+          }
+        });
+        return result;
+      }
+
+      function recomputeSpanDerived(s) {
+        const rank = { good: 3, mid: 2, bad: 1 };
+        s.evals = [];
+        s.keyState = {};
+        s.known = Array(s.word.length).fill(null);
+        s.guesses.forEach((g) => {
+          const ev = scoreGuess(g, s.word);
+          s.evals.push(ev);
+          ev.forEach((res, i) => {
+            const ch = g[i];
+            const cur = s.keyState[ch];
+            if (!cur || rank[res] > rank[cur]) s.keyState[ch] = res;
+            if (res === "good") s.known[i] = ch;
+          });
+        });
+      }
+
+      function loadRecordSave(fileIdx, efta) {
+        const all = load(ARCHIVE_KEY) || {};
+        if (all[efta]) return all[efta];
+        if (all[fileIdx] && all[fileIdx].efta === efta) return all[fileIdx];
+        const legacy = load(SAVE_KEY);
+        if (legacy && legacy.efta === efta) return legacy;
+        return null;
+      }
+
+      function persist() {
+        if (!state.doc) return;
+        const entry = {
+          day: state.isDaily ? DAY : null,
+          docketNo: state.docketNo,
+          fileIdx: state.fileIdx,
+          efta: state.doc.efta,
+          activeIdx: state.activeIdx,
+          statuses: state.spans.map((s) => (s.status === "revealed" || s.status === "denied" ? s.status : "pending")),
+          bars: state.spans.map((s) => ({
+            status: s.status === "revealed" || s.status === "denied" ? s.status : "pending",
+            guesses: s.guesses,
+            draft: s.draft,
+          })),
+        };
+        const all = load(ARCHIVE_KEY) || {};
+        all[state.doc.efta] = entry;
+        store(ARCHIVE_KEY, all);
+        if (state.isDaily && state.docketNo === TODAY_DOCKET_NO) {
+          store(SAVE_KEY, entry);
+        }
+      }
+
       const squares = () => state.spans.map((s) => (s.status === "revealed" ? "\u{1F7E9}" : "\u2B1B")).join("");
+
+      function barTrail(s) {
+        if (!s.evals.length) return s.status === "revealed" ? "\u{1F7E9}" : "\u2B1B";
+        return s.evals.map((ev) => {
+          if (ev.every((x) => x === "good")) return "\u{1F7E9}";
+          if (ev.some((x) => x === "good" || x === "mid")) return "\u{1F7E8}";
+          return "\u2B1C";
+        }).join("");
+      }
 
       async function boot() {
         try {
@@ -736,12 +1303,38 @@
             fetch("docket/index.json").then((r) => r.json()),
             fetch("words.txt").then((r) => r.text()),
           ]);
-          WORDS = new Set(words.split("\n"));
-          const n = ((DAY - EPOCH) % idx.count + idx.count) % idx.count;
-          state.doc = await fetch(`docket/${n}.json`).then((r) => r.json());
-          renderDoc();
+          state.totalCount = idx.count;
+          WORDS = new Set(words.split(/\r?\n/).map((w) => w.trim().toLowerCase()).filter(Boolean));
+          await loadDocket(TODAY_DOCKET_NO, true);
         } catch {
           $("docBody").innerHTML = '<p class="loading">The archive is temporarily unavailable. Please try again during regular business hours.</p>';
+        }
+      }
+
+      async function loadDocket(docketNo, isDaily = true, explicitFileIdx = null) {
+        if (state.busy) return;
+        state.isDaily = isDaily;
+        state.docketNo = docketNo;
+        state.fileIdx = explicitFileIdx !== null ? explicitFileIdx : fileIdxForDocket(docketNo, state.totalCount);
+        $("endWrap").style.display = "none";
+        $("docBody").innerHTML = '<p class="loading">Retrieving record from the archive...</p>';
+        const d = await fetch(`docket/${state.fileIdx}.json`).then((r) => r.json());
+        state.doc = d;
+        renderDoc();
+        updateNavState();
+      }
+
+      function updateNavState() {
+        $("navDaily").classList.toggle("active", state.isDaily);
+        $("navRandom").classList.toggle("active", !state.isDaily);
+        if (state.isDaily) {
+          $("modeBadge").textContent = `DAILY DOCKET №${TODAY_DOCKET_NO}`;
+          $("crumbCurrent").textContent = `Daily Docket №${TODAY_DOCKET_NO}`;
+          $("docNote").textContent = "one record per day. same for everyone.";
+        } else {
+          $("modeBadge").textContent = `RANDOM RECORD · ${state.doc.efta}`;
+          $("crumbCurrent").textContent = `Backlog File ${state.doc.efta}`;
+          $("docNote").textContent = "random record from the archive.";
         }
       }
 
@@ -750,9 +1343,16 @@
         $("docFrom").textContent = d.from;
         $("docCase").textContent = d.caseno;
         $("docTitle").textContent = d.kind;
-        $("docSub").textContent = [d.case, `${d.efta} · page ${d.page} · DOJ Data Set ${d.dataset}`].filter(Boolean).join(" — ");
-        $("docIndex").textContent =
-          `docket №${DOCKET_NO} — ${new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+        $("docSub").textContent = [d.case, `${d.efta} · page ${d.page} · DOJ Data Set ${d.dataset}`].filter(Boolean).join(" · ");
+
+        if (state.isDaily) {
+          const docDate = new Date((EPOCH + state.docketNo - 1) * 864e5 + new Date().getTimezoneOffset() * 6e4);
+          const dateStr = docDate.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+          $("docIndex").textContent = `docket №${state.docketNo} · ${dateStr}`;
+        } else {
+          $("docIndex").textContent = `backlog record #${state.fileIdx + 1} of ${state.totalCount} · ${d.efta}`;
+        }
+
         const body = $("docBody");
         body.innerHTML = "";
         state.spans = [];
@@ -767,61 +1367,232 @@
               b.title = "Redacted by the actual DOJ. Petitions not accepted.";
               return p.appendChild(b);
             }
-            b.className = "bar";
-            b.textContent = chunk.w.replace(/./g, "\u2588");
             const idx = state.spans.length;
-            b.addEventListener("click", () => activateSpan(idx));
+            b.className = "bar";
+            b.addEventListener("click", () => selectSpan(idx));
             p.appendChild(b);
-            state.spans.push({ el: b, word: chunk.w.toUpperCase(), text: chunk.t || chunk.w, status: "pending" });
+            state.spans.push({
+              idx,
+              el: b,
+              word: chunk.w.toUpperCase(),
+              text: chunk.t || chunk.w,
+              status: "pending",
+              guesses: [],
+              evals: [],
+              draft: "",
+              keyState: {},
+              known: Array(chunk.w.length).fill(null),
+            });
           });
           body.appendChild(p);
         });
-        const restore = saved && saved.day === DAY && saved.efta === d.efta ? saved.statuses : [];
-        restore.forEach((st, i) => {
-          const s = state.spans[i];
-          if (!s || (st !== "revealed" && st !== "denied")) return;
-          s.status = st;
-          s.el.classList.add(st);
-          if (st === "revealed") s.el.textContent = s.text;
-        });
-        updateProgress();
-        const first = state.spans.findIndex((s) => s.status === "pending");
-        if (first === -1) finish(false);
-        else activateSpan(first);
-      }
 
-      const activeSpan = () => state.spans.find((s) => s.status === "active");
-
-      function activateSpan(i) {
-        const s = state.spans[i];
-        if (!s || s.status !== "pending" || state.busy) return;
-        const cur = activeSpan();
-        if (cur) {
-          cur.status = "pending";
-          cur.el.classList.remove("active");
+        const saved = loadRecordSave(state.fileIdx, d.efta);
+        if (saved) {
+          state.spans.forEach((s, i) => {
+            const sb = saved.bars && saved.bars[i];
+            const legacySt = saved.statuses && saved.statuses[i];
+            if (sb) {
+              s.guesses = Array.isArray(sb.guesses)
+                ? sb.guesses.filter((g) => typeof g === "string" && g.length === s.word.length).map((g) => g.toUpperCase())
+                : [];
+              s.draft = typeof sb.draft === "string" ? sb.draft.toUpperCase().slice(0, s.word.length) : "";
+              recomputeSpanDerived(s);
+              if (s.guesses.includes(s.word) || sb.status === "revealed") {
+                s.status = "revealed";
+                s.draft = "";
+              } else if (s.guesses.length >= MAX_GUESSES || sb.status === "denied") {
+                s.status = "denied";
+                s.draft = "";
+              } else {
+                s.status = "pending";
+              }
+            } else if (legacySt === "revealed" || legacySt === "denied") {
+              s.status = legacySt;
+            }
+          });
         }
-        s.status = "active";
-        s.el.classList.add("active");
-        state.guess = "";
-        state.row = 0;
-        state.keyState = {};
-        buildGrid(s.word.length);
-        buildKeyboard();
-        $("promptLine").innerHTML =
-          `Petition pending: a <b>${s.word.length}</b>-character redaction. ` +
-          `${MAX_GUESSES} attempts authorized. Type or click.`;
+
+        state.spans.forEach((s) => paintDocBar(s));
+        updateProgress();
+
+        const allDone = state.spans.every((s) => s.status !== "pending");
+        let startIdx = 0;
+        if (saved && typeof saved.activeIdx === "number" && state.spans[saved.activeIdx]) {
+          startIdx = saved.activeIdx;
+          if (!allDone && state.spans[startIdx].status !== "pending") {
+            const firstPend = state.spans.findIndex((s) => s.status === "pending");
+            if (firstPend !== -1) startIdx = firstPend;
+          }
+        } else {
+          const firstPend = state.spans.findIndex((s) => s.status === "pending");
+          startIdx = firstPend !== -1 ? firstPend : 0;
+        }
+
+        selectSpan(startIdx);
+        if (allDone) finish(false);
       }
 
-      function buildGrid(len) {
+      function paintDocBar(s) {
+        const el = s.el;
+        const isSel = s.idx === state.activeIdx;
+        el.className = "bar";
+        if (s.status === "revealed") {
+          el.classList.add("revealed");
+          if (isSel) el.classList.add("selected");
+          el.textContent = s.text;
+          el.title = `Bar #${s.idx + 1}: Declassified in ${s.guesses.length || 1}/${MAX_GUESSES} petitions. Click to inspect history.`;
+          return;
+        }
+        if (s.status === "denied") {
+          el.classList.add("denied");
+          if (isSel) el.classList.add("selected");
+          el.textContent = s.word.replace(/./g, "\u2588");
+          el.title = `Bar #${s.idx + 1}: Petition denied (${MAX_GUESSES}/${MAX_GUESSES}). Click to inspect history.`;
+          return;
+        }
+        if (isSel) {
+          el.classList.add("active", "selected");
+        }
+        el.innerHTML = "";
+        const badge = document.createElement("span");
+        badge.className = "bar-num";
+        badge.textContent = `#${s.idx + 1}`;
+        el.appendChild(badge);
+
+        const cells = document.createElement("span");
+        cells.className = "bcells";
+        for (let c = 0; c < s.word.length; c++) {
+          const chEl = document.createElement("span");
+          chEl.className = "bch";
+          if (isSel && s.draft[c]) {
+            chEl.classList.add("draft");
+            chEl.textContent = s.draft[c];
+          } else if (s.known[c]) {
+            chEl.classList.add("known");
+            chEl.textContent = s.known[c];
+          } else {
+            chEl.textContent = "\u2588";
+          }
+          cells.appendChild(chEl);
+        }
+        el.appendChild(cells);
+        el.title = `Bar #${s.idx + 1} (${s.word.length} letters, ${s.guesses.length}/${MAX_GUESSES} attempts used)`;
+      }
+
+      const currentSpan = () => state.spans[state.activeIdx] || null;
+
+      function selectSpan(i) {
+        if (!state.spans[i] || state.busy) return;
+        state.activeIdx = i;
+        state.spans.forEach((s) => paintDocBar(s));
+        renderBarTabs();
+        renderConsole();
+        persist();
+      }
+
+      function stepSpan(dir) {
+        if (!state.spans.length || state.busy) return;
+        const next = (state.activeIdx + dir + state.spans.length) % state.spans.length;
+        selectSpan(next);
+      }
+
+      function renderBarTabs() {
+        const wrap = $("barTabs");
+        wrap.innerHTML = "";
+        const prevBtn = document.createElement("button");
+        prevBtn.type = "button";
+        prevBtn.className = "tab-step";
+        prevBtn.textContent = "‹";
+        prevBtn.title = "Previous bar (Shift+Tab)";
+        prevBtn.addEventListener("click", () => stepSpan(-1));
+        wrap.appendChild(prevBtn);
+
+        state.spans.forEach((s, i) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "bar-tab";
+          if (i === state.activeIdx) btn.classList.add("active");
+          if (s.status === "revealed") btn.classList.add("revealed");
+          if (s.status === "denied") btn.classList.add("denied");
+
+          let subText = `${s.guesses.length}/${MAX_GUESSES}`;
+          if (s.status === "revealed") subText = `✓ ${s.guesses.length || 1}/${MAX_GUESSES}`;
+          else if (s.status === "denied") subText = `✗ DENIED`;
+
+          btn.innerHTML = `<span class="t-top">#${i + 1} (${s.word.length})</span><span class="t-sub">${subText}</span>`;
+          btn.addEventListener("click", () => selectSpan(i));
+          wrap.appendChild(btn);
+        });
+
+        const nextBtn = document.createElement("button");
+        nextBtn.type = "button";
+        nextBtn.className = "tab-step";
+        nextBtn.textContent = "›";
+        nextBtn.title = "Next bar (Tab)";
+        nextBtn.addEventListener("click", () => stepSpan(1));
+        wrap.appendChild(nextBtn);
+      }
+
+      function renderConsole() {
+        const s = currentSpan();
+        if (!s) return;
+        buildGrid(s);
+        buildKeyboard(s);
+        updatePromptLine(s);
+      }
+
+      function updatePromptLine(s) {
+        const p = $("promptLine");
+        delete p.dataset.prev;
+        if (s.status === "revealed") {
+          p.innerHTML =
+            `<span>Bar #${s.idx + 1} · <b style="color:var(--good)">DECLASSIFIED</b> (${s.guesses.length || 1}/${MAX_GUESSES}): <b>${s.word}</b></span>`;
+          return;
+        }
+        if (s.status === "denied") {
+          p.innerHTML =
+            `<span>Bar #${s.idx + 1} · <b style="color:var(--stamp)">DENIED</b> (${MAX_GUESSES}/${MAX_GUESSES}) · Sealed word: <b>${s.word}</b></span>`;
+          return;
+        }
+        const rem = MAX_GUESSES - s.guesses.length;
+        const knownCount = s.known.filter(Boolean).length;
+        const knownNote = knownCount > 0 ? ` · <b>${knownCount}/${s.word.length}</b> letters locked` : "";
+        p.innerHTML =
+          `<span>Bar #${s.idx + 1}: <b>${s.word.length}</b>-letter redaction · <b>${rem}</b> petition${rem === 1 ? "" : "s"} left${knownNote}</span>`;
+      }
+
+      function buildGrid(s) {
+        const len = s.word.length;
         const g = $("grid");
         g.innerHTML = "";
         g.style.setProperty("--cols", len);
+        g.style.setProperty("--gap", len >= 9 ? "3px" : len >= 7 ? "4px" : "5px");
+        g.style.setProperty("--tfont", len >= 9 ? "13px" : len >= 7 ? "14px" : "15px");
+
         for (let r = 0; r < MAX_GUESSES; r++) {
           const row = document.createElement("div");
           row.className = "row";
+          const submitted = s.guesses[r];
+          const ev = s.evals[r];
+          const isCurrentRow = s.status === "pending" && r === s.guesses.length;
+
           for (let c = 0; c < len; c++) {
             const t = document.createElement("div");
             t.className = "tile";
+            if (submitted) {
+              t.textContent = submitted[c] || "";
+              if (ev && ev[c]) t.classList.add(ev[c]);
+            } else if (isCurrentRow) {
+              if (s.draft[c]) {
+                t.textContent = s.draft[c];
+                t.classList.add("filled");
+              } else if (s.known[c]) {
+                t.textContent = s.known[c];
+                t.classList.add("ghost");
+              }
+              if (c === s.draft.length) t.classList.add("cursor");
+            }
             row.appendChild(t);
           }
           g.appendChild(row);
@@ -829,7 +1600,7 @@
       }
 
       const ROWS = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
-      function buildKeyboard() {
+      function buildKeyboard(s) {
         const k = $("kbd");
         k.innerHTML = "";
         ROWS.forEach((letters, ri) => {
@@ -840,147 +1611,219 @@
           if (ri === 2) r.appendChild(mkKey("\u232B", "wide", onBack));
           k.appendChild(r);
         });
+        paintKeyboard(s);
       }
+
       function mkKey(label, cls, fn) {
         const b = document.createElement("button");
+        b.type = "button";
         b.className = "key " + cls;
         b.textContent = label;
         b.dataset.key = label === "\u232B" ? "BACK" : label;
         b.addEventListener("click", (e) => { e.currentTarget.blur(); fn(); });
         return b;
       }
-      function paintKeyboard() {
+
+      function paintKeyboard(s) {
+        if (!s) return;
         document.querySelectorAll(".key").forEach((k) => {
-          const st = state.keyState[k.dataset.key];
+          const st = s.keyState[k.dataset.key];
           k.classList.remove("good", "mid", "bad");
           if (st) k.classList.add(st);
         });
       }
 
-      function typeLetter(ch) {
-        const s = activeSpan();
-        if (!s || state.busy || state.guess.length >= s.word.length) return;
-        state.guess += ch;
-        paintRow();
-      }
-      function onBack() {
-        if (state.busy) return;
-        state.guess = state.guess.slice(0, -1);
-        paintRow();
-      }
-      function paintRow() {
-        const row = $("grid").children[state.row];
+      function paintActiveRow(s) {
+        const row = $("grid").children[s.guesses.length];
         if (!row) return;
         [...row.children].forEach((t, i) => {
-          t.textContent = state.guess[i] || "";
-          t.classList.toggle("filled", !!state.guess[i]);
+          t.className = "tile";
+          if (s.draft[i]) {
+            t.textContent = s.draft[i];
+            t.classList.add("filled");
+          } else if (s.known[i]) {
+            t.textContent = s.known[i];
+            t.classList.add("ghost");
+          } else {
+            t.textContent = "";
+          }
+          if (i === s.draft.length) t.classList.add("cursor");
         });
+        paintDocBar(s);
+      }
+
+      function typeLetter(ch) {
+        const s = currentSpan();
+        if (!s || state.busy) return;
+        if (s.status !== "pending") {
+          const nextPend = state.spans.findIndex((x) => x.status === "pending");
+          if (nextPend !== -1) selectSpan(nextPend);
+          else return;
+        }
+        const active = currentSpan();
+        if (!active || active.status !== "pending" || active.draft.length >= active.word.length) return;
+        active.draft += ch;
+        sfxKey();
+        paintActiveRow(active);
+        persist();
+      }
+
+      function onBack() {
+        const s = currentSpan();
+        if (!s || s.status !== "pending" || state.busy || !s.draft.length) return;
+        s.draft = s.draft.slice(0, -1);
+        sfxBack();
+        paintActiveRow(s);
+        persist();
       }
 
       function onEnter() {
-        const s = activeSpan();
+        const s = currentSpan();
         if (!s || state.busy) return;
-        if (state.guess.length !== s.word.length) return reject("INCOMPLETE PETITION");
-        if (!WORDS.has(state.guess.toLowerCase()) && state.guess !== s.word) {
-          reject("REJECTED: NOT A WORD");
-          state.guess = "";
-          return paintRow();
+        if (s.status !== "pending") {
+          const nextPend = state.spans.findIndex((x) => x.status === "pending");
+          if (nextPend !== -1) selectSpan(nextPend);
+          return;
         }
-        const row = $("grid").children[state.row];
-        const ans = s.word.split("");
-        const guess = state.guess.split("");
-        const used = Array(ans.length).fill(false);
-        const result = Array(ans.length).fill("bad");
-        guess.forEach((ch, i) => {
-          if (ch === ans[i]) { result[i] = "good"; used[i] = true; }
-        });
-        guess.forEach((ch, i) => {
-          if (result[i] === "good") return;
-          const j = ans.findIndex((a, ai) => !used[ai] && a === ch);
-          if (j !== -1) { result[i] = "mid"; used[j] = true; }
-        });
-        const rank = { good: 3, mid: 2, bad: 1 };
+        if (s.draft.length !== s.word.length) return reject("INCOMPLETE PETITION");
+        const guessWord = s.draft.toUpperCase();
+        if (!WORDS.has(guessWord.toLowerCase()) && guessWord !== s.word) {
+          return reject("REJECTED: NOT IN DICTIONARY");
+        }
+        if (s.guesses.includes(guessWord)) {
+          return reject("PETITION ALREADY FILED");
+        }
+
+        const rowIdx = s.guesses.length;
+        const row = $("grid").children[rowIdx];
+        const result = scoreGuess(guessWord, s.word);
+
+        s.guesses.push(guessWord);
+        s.draft = "";
+        recomputeSpanDerived(s);
+
+        const won = guessWord === s.word;
+        const outOfGuesses = !won && s.guesses.length >= MAX_GUESSES;
+        if (won) s.status = "revealed";
+        else if (outOfGuesses) s.status = "denied";
+
+        persist();
+        renderBarTabs();
+        updateProgress();
+
         [...row.children].forEach((t, i) => {
-          setTimeout(() => t.classList.add(result[i]), i * 90);
-          const cur = state.keyState[guess[i]];
-          if (!cur || rank[result[i]] > rank[cur]) state.keyState[guess[i]] = result[i];
+          t.classList.remove("cursor", "ghost");
+          sfxFlip(i, result[i]);
+          setTimeout(() => {
+            t.classList.add("flip", result[i]);
+          }, i * 80);
         });
-        const settle = s.word.length * 90 + 380;
+
+        const settle = s.word.length * 80 + 360;
         state.busy = true;
-        setTimeout(paintKeyboard, settle - 300);
-        const won = state.guess === s.word;
-        state.row++;
-        state.guess = "";
-        if (!won && state.row < MAX_GUESSES) return setTimeout(() => (state.busy = false), settle - 300);
+
         setTimeout(() => {
-          state.busy = false;
-          s.status = won ? "revealed" : "denied";
-          s.el.classList.remove("active");
-          s.el.classList.add(s.status);
-          if (won) s.el.textContent = s.text;
-          nextSpan();
+          paintKeyboard(s);
+          paintDocBar(s);
+        }, settle - 180);
+
+        if (!won && !outOfGuesses) {
+          setTimeout(() => {
+            state.busy = false;
+            updatePromptLine(s);
+            paintActiveRow(s);
+          }, settle);
+          return;
+        }
+
+        setTimeout(() => {
+          if (won) {
+            sfxWin();
+            [...row.children].forEach((t, i) => {
+              setTimeout(() => t.classList.add("bounce"), i * 45);
+            });
+          } else {
+            sfxDenied();
+          }
+          paintDocBar(s);
+          renderBarTabs();
+          updatePromptLine(s);
+          updateProgress();
+
+          const nextPend = state.spans.findIndex((x, idx) => idx > s.idx && x.status === "pending");
+          const wrapPend = state.spans.findIndex((x) => x.status === "pending");
+          const targetNext = nextPend !== -1 ? nextPend : wrapPend;
+
+          if (targetNext === -1) {
+            state.busy = false;
+            finish(true);
+          } else {
+            setTimeout(() => {
+              state.busy = false;
+              selectSpan(targetNext);
+            }, 650);
+          }
         }, settle);
       }
 
       function reject(msg) {
+        sfxDenied();
+        const s = currentSpan();
         const p = $("promptLine");
         if (!p.dataset.prev) p.dataset.prev = p.innerHTML;
         p.innerHTML = `<b style="color:#8b1f1f">${msg}</b>`;
-        const row = $("grid").children[state.row];
+        const row = s ? $("grid").children[s.guesses.length] : null;
         if (row) {
           row.classList.add("shake");
           setTimeout(() => row.classList.remove("shake"), 450);
         }
         clearTimeout(reject.t);
         reject.t = setTimeout(() => {
-          if (activeSpan()) p.innerHTML = p.dataset.prev;
-          delete p.dataset.prev;
-        }, 1300);
-      }
-
-      function nextSpan() {
-        updateProgress();
-        persist();
-        const next = state.spans.findIndex((s) => s.status === "pending");
-        if (next !== -1) return activateSpan(next);
-        $("promptLine").innerHTML = "Docket complete for this record. Return tomorrow.";
-        $("grid").innerHTML = "";
-        $("kbd").innerHTML = "";
-        finish(true);
+          if (currentSpan()) updatePromptLine(currentSpan());
+        }, 1400);
       }
 
       function updateProgress() {
         const rev = state.spans.filter((s) => s.status === "revealed").length;
         const den = state.spans.filter((s) => s.status === "denied").length;
+        const totalTries = state.spans.reduce((acc, s) => acc + s.guesses.length, 0);
         $("progress").innerHTML =
-          `docket: <b>${rev}</b> declassified / <b>${den}</b> sealed / ${state.spans.length} bars`;
+          `<span><b>${rev}</b> unredacted · <b>${den}</b> sealed · ${state.spans.length} bars</span>` +
+          `<span><b>${totalTries}</b> petitions</span>`;
       }
 
       function recordStats(rev, total) {
-        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, last: null, dist: {} };
+        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, last: null, dist: {}, totalWords: 0 };
+        if (!state.isDaily || state.docketNo !== TODAY_DOCKET_NO) return st;
         if (st.last === DAY) return st;
         st.played++;
+        st.totalWords = (st.totalWords || 0) + rev;
         st.dist[rev] = (st.dist[rev] || 0) + 1;
         if (rev === total) {
           st.full++;
           st.streak = st.lastFull === DAY - 1 ? st.streak + 1 : 1;
           st.lastFull = DAY;
           st.best = Math.max(st.best, st.streak);
-        } else st.streak = 0;
+        } else {
+          st.streak = 0;
+        }
         st.last = DAY;
         store(STATS_KEY, st);
         return st;
       }
 
       function renderStats() {
-        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, dist: {} };
+        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, dist: {}, totalWords: 0 };
         const pct = st.played ? Math.round((100 * st.full) / st.played) : 0;
         $("statNums").innerHTML = [
-          [st.played, "records reviewed"], [pct, "% granted in full"], [st.streak, "current streak"], [st.best, "longest streak"],
+          [st.played, "records reviewed"],
+          [pct + "%", "granted in full"],
+          [st.streak, "current streak"],
+          [st.best, "longest streak"],
         ].map(([n, l]) => `<div><b>${n}</b><span>${l}</span></div>`).join("");
         const max = Math.max(1, ...Object.values(st.dist));
         const today = state.spans.filter((s) => s.status === "revealed").length;
-        const done = st.last === DAY;
+        const done = st.last === DAY && state.isDaily && state.docketNo === TODAY_DOCKET_NO;
         $("statDist").innerHTML = [0, 1, 2, 3, 4].map((k) => {
           const v = st.dist[k] || 0;
           return `<div class="drow"><span>${k}</span><i class="${done && k === today ? "now" : ""}" style="width:${8 + (92 * v) / max}%">${v}</i></div>`;
@@ -992,24 +1835,52 @@
         const den = state.spans.length - rev;
         const total = state.spans.length;
         recordStats(rev, total);
-        $("endWrap").style.display = "";
-        $("endTitle").textContent = rev === total ? "PETITION GRANTED IN FULL" : rev === 0 ? "PETITION DENIED IN FULL" : `${rev}/${total} WORDS DECLASSIFIED`;
+
+        const wrap = $("endWrap");
+        wrap.style.display = "";
+        wrap.classList.toggle("granted", rev === total);
+
+        $("endTitle").textContent =
+          rev === total
+            ? "PETITION GRANTED IN FULL"
+            : rev === 0
+            ? "PETITION DENIED IN FULL"
+            : `${rev}/${total} WORDS DECLASSIFIED`;
         $("endBody").innerHTML =
-          `This office has processed <b>${rev}</b> successful petition${rev === 1 ? "" : "s"} today. ` +
+          `This office has processed <b>${rev}</b> successful petition${rev === 1 ? "" : "s"} on this record. ` +
           `<b>${den}</b> word${den === 1 ? "" : "s"} remain${den === 1 ? "s" : ""} sealed.<br/>` +
           (rev === total
             ? "Congress took six years and an act of law. You took a lunch break."
             : rev === 0
-            ? "Congratulations. You have been offered a position at the Department."
-            : "The department thanks you for your cooperation.");
+            ? "Congratulations. You have been offered a senior position at the Department."
+            : "The department thanks you for your compliance.");
+
         $("shareSquares").textContent = squares();
+
+        const bd = $("endBreakdown");
+        bd.innerHTML = "";
+        state.spans.forEach((s, idx) => {
+          const card = document.createElement("div");
+          card.className = `end-bar-item ${s.status}`;
+          const triesLabel = s.status === "revealed" ? `${s.guesses.length || 1}/${MAX_GUESSES} petitions` : "SEALED (6/6)";
+          card.innerHTML =
+            `<div class="eb-head"><span>Bar #${idx + 1}</span><span>${triesLabel}</span></div>` +
+            `<div class="eb-word">${s.word}</div>` +
+            `<div class="eb-trail">${barTrail(s)}</div>`;
+          card.addEventListener("click", () => {
+            selectSpan(idx);
+            $("doc").scrollIntoView({ behavior: "smooth", block: "nearest" });
+          });
+          bd.appendChild(card);
+        });
+
         $("srcLink").href = state.doc.url;
-        $("srcLink").textContent = `${state.doc.efta}.pdf — justice.gov`;
+        $("srcLink").textContent = `${state.doc.efta}.pdf · justice.gov`;
         tickCountdown();
-        setInterval(tickCountdown, 30000);
+        if (!finish.timer) finish.timer = setInterval(tickCountdown, 30000);
         if (animate) {
           setTimeout(() => openStats(), 900);
-          $("endWrap").scrollIntoView({ behavior: "smooth", block: "center" });
+          wrap.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       }
 
@@ -1019,21 +1890,66 @@
         mid.setHours(24, 0, 0, 0);
         const ms = mid - now;
         const h = Math.floor(ms / 36e5), m = Math.floor((ms % 36e5) / 6e4);
-        $("nextIn").textContent = `next record on the docket in ${h}h ${m}m`;
+        $("nextIn").textContent = `next daily record on the docket in ${h}h ${m}m`;
       }
 
       function openStats() {
         renderStats();
         $("statsModal").classList.add("show");
       }
+
+      function loadRandomRecord() {
+        if (!state.totalCount || state.busy) return;
+        const dailyIdx = fileIdxForDocket(TODAY_DOCKET_NO, state.totalCount);
+        let rnd = Math.floor(Math.random() * state.totalCount);
+        if (state.totalCount > 1 && (rnd === state.fileIdx || rnd === dailyIdx)) {
+          rnd = (rnd + 1) % state.totalCount;
+        }
+        loadDocket(rnd + 1, false, rnd);
+      }
+
       $("statsBtn").addEventListener("click", openStats);
+      $("navStats").addEventListener("click", openStats);
+      $("footStats").addEventListener("click", openStats);
+      $("endStatsBtn").addEventListener("click", openStats);
+
+      $("navDaily").addEventListener("click", () => loadDocket(TODAY_DOCKET_NO, true));
+      $("crumbHome").addEventListener("click", () => loadDocket(TODAY_DOCKET_NO, true));
+
+      $("navRandom").addEventListener("click", loadRandomRecord);
+      $("randomLinkBtn").addEventListener("click", loadRandomRecord);
+      $("footRandom").addEventListener("click", loadRandomRecord);
+      $("endRandomBtn").addEventListener("click", loadRandomRecord);
+
+      $("searchForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const q = $("searchInput").value.trim();
+        if (!q) return;
+        $("alertBox").innerHTML =
+          `<b>FOIA Search Response:</b> Query for <b>"${q.replace(/[<>&"]/g, "")}"</b> matched 14,892 pages across Data Sets 1-12. ` +
+          `All 14,892 pages have been withheld in full pursuant to 5 U.S.C. § 552(b)(7)(C).`;
+        $("searchInput").value = "";
+      });
+
       $("statsModal").addEventListener("click", (e) => {
         if (e.target === e.currentTarget || e.target.closest(".x")) $("statsModal").classList.remove("show");
       });
 
       async function share(btn) {
         const rev = state.spans.filter((s) => s.status === "revealed").length;
-        const text = `epsteindle docket №${DOCKET_NO}\n${squares()} ${rev}/${state.spans.length} words declassified\n${location.origin}${location.pathname}`;
+        const header = state.isDaily
+          ? `epsteindle docket №${state.docketNo} (${state.doc.efta})`
+          : `epsteindle record ${state.doc.efta}`;
+        const lines = state.spans.map((s, i) => {
+          const count = s.status === "revealed" ? `${s.guesses.length || 1}/${MAX_GUESSES}` : "X/6";
+          return `#${i + 1} ${barTrail(s)} (${count})`;
+        });
+        const text = [
+          header,
+          `${squares()} ${rev}/${state.spans.length} words declassified`,
+          ...lines,
+          "https://epsteindle.org",
+        ].join("\n");
         const label = btn.textContent;
         try {
           await navigator.clipboard.writeText(text);
@@ -1046,10 +1962,33 @@
       document.querySelectorAll(".share").forEach((b) => b.addEventListener("click", () => share(b)));
 
       document.addEventListener("keydown", (e) => {
+        if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
         if (e.metaKey || e.ctrlKey || e.altKey) return;
-        if (e.key === "Escape") return $("statsModal").classList.remove("show");
-        if (e.key === "Enter") { e.preventDefault(); return onEnter(); }
-        if (e.key === "Backspace") return onBack();
+        if (e.key === "Escape") {
+          $("statsModal").classList.remove("show");
+          return;
+        }
+        if ($("statsModal").classList.contains("show")) return;
+        if (e.key === "Tab") {
+          e.preventDefault();
+          return stepSpan(e.shiftKey ? -1 : 1);
+        }
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          return stepSpan(-1);
+        }
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          return stepSpan(1);
+        }
+        if (e.key === "Enter") {
+          e.preventDefault();
+          return onEnter();
+        }
+        if (e.key === "Backspace") {
+          e.preventDefault();
+          return onBack();
+        }
         if (/^[a-zA-Z]$/.test(e.key)) typeLetter(e.key.toUpperCase());
       });
 

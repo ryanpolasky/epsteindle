@@ -1,9 +1,10 @@
-# epsteindle
+# epsteindle.org
 
 Daily wordle over real pages from the DOJ Epstein release. Each black bar hides a real word; guess it to unredact it. Parody site, not affiliated with any government.
 
 ```
 index.html      the whole site (static)
+seal.svg        agency crest & favicon
 words.txt       guess dictionary
 docket/         one record per day ({n}.json) + index.json
 scripts/        build-docket.py, regenerates docket/

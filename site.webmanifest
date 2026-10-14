@@ -1,0 +1,19 @@
+{
+  "name": "Epsteindle - Office of Interactive Declassification",
+  "short_name": "Epsteindle",
+  "description": "Guess the blacked-out words in real pages from the DOJ Epstein release. A new declassification record every day.",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["games", "entertainment", "puzzle"],
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/seal.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "theme_color": "#112e51",
+  "background_color": "#f1f1f1",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "/",
+  "scope": "/"
+}

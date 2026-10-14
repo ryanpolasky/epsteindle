@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""Builds docket/ from rhowardstone/Epstein-research-data v5.2 (ftc.db + page_classifications.db in $EPSTEIN_DATA_DIR)."""
 import json, os, random, re, sqlite3, sys, hashlib
 from pathlib import Path
 
@@ -47,7 +46,8 @@ GAME_WORDS = {w for w in RANK if 4 <= len(w) <= 11}
 
 def clean_lines(text):
     out = []
-    for ln in text.replace("\r", "").split("\n"):
+    text = text.replace("\r", "").replace("\u2014", " - ").replace("\u2013", "-")
+    for ln in text.split("\n"):
         s = ln.strip()
         if not s or JUNK_LINE.match(s):
             out.append("")
@@ -71,7 +71,7 @@ def good_sentence(s):
     known = sum(1 for t in toks if t.lower().strip("'") in RANK)
     if known / len(toks) < 0.93:
         return False
-    odd = len(re.findall(r"[^A-Za-z0-9 .,;:'\"()$%&\-–—/?!“”’‘#§]", s))
+    odd = len(re.findall(r"[^A-Za-z0-9 .,;:'\"()$%&\-/?!“”’‘#§]", s))
     if odd > 1:
         return False
     if re.search(r"\b[a-z]\b\s+\b[a-z]\b\s+\b[a-z]\b", s) or re.search(r"[A-Z]{2,}[a-z]+[A-Z]", s):
