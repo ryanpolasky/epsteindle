@@ -144,6 +144,7 @@
         color: var(--ink);
         font-family: var(--sans);
         -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
 
       .gov-banner {
@@ -226,6 +227,7 @@
       }
       .seal { width: 68px; height: 68px; flex: 0 0 68px; display: block; }
       .seal-sm { width: 44px; height: 44px; flex: 0 0 44px; display: block; }
+      .masthead-titles { flex: 1; min-width: 0; }
       .agency-name {
         font-family: var(--serif);
         font-size: 11px;
@@ -592,8 +594,23 @@
       .panel-top {
         display: flex;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         gap: 8px;
+      }
+      .dock-toggle {
+        display: none;
+        background: #e8eaed;
+        border: 1px solid #c9cbcd;
+        border-radius: 2px;
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--navy);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        touch-action: manipulation;
       }
       .panel h3 {
         font-size: 12px;
@@ -904,10 +921,90 @@
         color: #8fa3bf;
         border-top: 1px solid #2a4a73;
       }
-      @media (max-width: 560px) {
-        .doc p { text-align: left; }
-        .panel { position: static; }
+      @media (max-width: 900px) {
+        .gov-banner { padding: 4px 10px; font-size: 11px; }
+        .masthead .inner { padding: 10px 12px; gap: 10px; flex-wrap: nowrap; }
+        .seal { width: 44px; height: 44px; flex: 0 0 44px; }
+        .agency-name { font-size: 9.5px; letter-spacing: 0.1em; }
+        .site-title { font-size: 17px; line-height: 1.15; }
         .masthead .search { display: none; }
+        nav.main-nav a { padding: 8px 10px; font-size: 11.5px; }
+        nav.main-nav li.nav-extra { display: none; }
+        .breadcrumb { display: none; }
+        .alert { margin-top: 8px; padding: 0 12px; }
+        .alert .box { padding: 8px 10px; font-size: 11.5px; line-height: 1.4; }
+        .page { padding: 10px 12px 320px; }
+        .page h1 { font-size: 20px; margin-bottom: 4px; }
+        .page .lede { font-size: 12.5px; margin-bottom: 10px; line-height: 1.45; }
+        .doc { padding: 14px 12px; }
+        .doc-head { margin-bottom: 10px; padding-bottom: 6px; }
+        .doc .sub { margin-bottom: 10px; font-size: 11px; }
+        .doc p { text-align: left; line-height: 2; font-size: 13.5px; margin-bottom: 10px; }
+        .panel {
+          position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: auto;
+          z-index: 40;
+          border: none;
+          border-top: 3px solid var(--navy);
+          box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.24);
+          padding: 7px 6px calc(7px + env(safe-area-inset-bottom));
+        }
+        .panel .terminal-id,
+        .panel #barHintKey,
+        .panel .progress {
+          display: none;
+        }
+        .dock-toggle { display: inline-block; }
+        .panel-top { margin-bottom: 5px; padding: 0 4px; }
+        .bar-tabs { margin-bottom: 5px; padding-bottom: 5px; }
+        .prompt-line { min-height: 18px; margin-bottom: 5px; font-size: 11.5px; padding: 0 4px; }
+        .grid {
+          gap: 3px;
+          margin-bottom: 6px;
+          max-height: 102px;
+          overflow-y: auto;
+        }
+        .row {
+          grid-template-columns: repeat(var(--cols, 5), minmax(0, 32px));
+          gap: 3px;
+        }
+        .row.empty-future {
+          display: none;
+        }
+        .tile {
+          aspect-ratio: auto;
+          height: 30px;
+          font-size: 14px;
+        }
+        .kbd { gap: 4px; width: 100%; }
+        .kbd-row { gap: 3px; width: 100%; }
+        .key {
+          flex: 1 1 0;
+          min-width: 0;
+          max-width: none;
+          height: 40px;
+          padding: 0;
+          font-size: 13px;
+        }
+        .key.wide {
+          flex: 1.5 1 0;
+          max-width: none;
+          font-size: 10px;
+        }
+        .console-links {
+          display: none;
+        }
+        .panel.minimized .panel-body {
+          display: none;
+        }
+        .panel.minimized .bar-tabs {
+          margin-bottom: 0;
+          padding-bottom: 0;
+          border-bottom: none;
+        }
       }
     </style>
   </head>
@@ -958,7 +1055,7 @@
     <div class="masthead">
       <div class="inner">
         <img class="seal" src="seal.svg?v=2" alt="Department of Redaction Affairs" />
-        <div>
+        <div class="masthead-titles">
           <div class="agency-name">Department of Redaction Affairs</div>
           <div class="site-title">Office of Interactive Declassification <span class="tld">· epsteindle.org</span></div>
         </div>
@@ -973,10 +1070,10 @@
       <ul>
         <li><a id="navDaily" class="active">Daily Docket</a></li>
         <li><a id="navRandom">Pull Random Record</a></li>
-        <li><a id="navStats">Petition Record</a></li>
-        <li><a href="#" onclick="return denied(event)">Public Records</a></li>
-        <li><a href="#" onclick="return denied(event)">FOIA Requests</a></li>
-        <li><a href="#" onclick="return denied(event)">Inspector General</a></li>
+        <li id="navStatsLi" style="display:none;"><a id="navStats">Petition Record</a></li>
+        <li class="nav-extra"><a href="#" onclick="return denied(event)">Public Records</a></li>
+        <li class="nav-extra"><a href="#" onclick="return denied(event)">FOIA Requests</a></li>
+        <li class="nav-extra"><a href="#" onclick="return denied(event)">Inspector General</a></li>
       </ul>
     </nav>
 
@@ -1016,21 +1113,24 @@
           </div>
         </section>
 
-        <aside class="panel">
+        <aside class="panel" id="consolePanel">
           <div class="panel-top">
             <h3>Petition Console</h3>
             <span style="font-size:10px;color:#5b616b;font-family:var(--mono);" id="barHintKey">TAB TO SWITCH</span>
+            <button class="dock-toggle" id="dockToggle" type="button">▾ Hide</button>
           </div>
           <div class="terminal-id">TERMINAL 7-G · FORM ODR-88 (REV. 07/2025)</div>
           <div class="bar-tabs" id="barTabs"></div>
-          <div class="prompt-line" id="promptLine"></div>
-          <div class="grid" id="grid"></div>
-          <div class="kbd" id="kbd"></div>
-          <div class="progress" id="progress"></div>
-          <div class="console-links">
-            <button class="stats-link" id="statsBtn" type="button">view petition record</button>
-            <button class="stats-link" id="todayLinkBtn" type="button" style="display:none;">today's docket</button>
-            <button class="stats-link" id="randomLinkBtn" type="button">pull random record</button>
+          <div class="panel-body">
+            <div class="prompt-line" id="promptLine"></div>
+            <div class="grid" id="grid"></div>
+            <div class="kbd" id="kbd"></div>
+            <div class="progress" id="progress"></div>
+            <div class="console-links">
+              <button class="stats-link" id="statsBtn" type="button" style="display:none;">view petition record</button>
+              <button class="stats-link" id="todayLinkBtn" type="button" style="display:none;">today's docket</button>
+              <button class="stats-link" id="randomLinkBtn" type="button">pull random record</button>
+            </div>
           </div>
         </aside>
       </div>
@@ -1089,7 +1189,7 @@
           <ul>
             <li><a href="#" onclick="return denied(event)">Reading Room</a></li>
             <li><a id="footRandom">Random Backlog Record</a></li>
-            <li><a id="footStats">Mandatory Review Stats</a></li>
+            <li id="footStatsLi" style="display:none;"><a id="footStats">Mandatory Review Stats</a></li>
             <li><a href="#" onclick="return denied(event)">Black Binder, Phase 1</a></li>
           </ul>
         </div>
@@ -1356,7 +1456,7 @@
             }
             const idx = state.spans.length;
             b.className = "bar";
-            b.addEventListener("click", () => selectSpan(idx));
+            b.addEventListener("click", () => selectSpan(idx, true));
             p.appendChild(b);
             state.spans.push({
               idx,
@@ -1416,7 +1516,8 @@
           startIdx = firstPend !== -1 ? firstPend : 0;
         }
 
-        selectSpan(startIdx);
+        setDockMinimized(allDone);
+        selectSpan(startIdx, false);
         if (allDone) finish(false);
       }
 
@@ -1469,13 +1570,42 @@
 
       const currentSpan = () => state.spans[state.activeIdx] || null;
 
-      function selectSpan(i) {
+      function setDockMinimized(min) {
+        const panel = $("consolePanel");
+        const btn = $("dockToggle");
+        if (!panel || !btn) return;
+        panel.classList.toggle("minimized", !!min);
+        btn.textContent = min ? "▴ Keyboard" : "▾ Hide";
+      }
+
+      $("dockToggle").addEventListener("click", () => {
+        const panel = $("consolePanel");
+        setDockMinimized(!panel.classList.contains("minimized"));
+      });
+
+      function scrollActiveBarIntoView() {
+        if (window.innerWidth > 900) return;
+        const s = currentSpan();
+        const panel = $("consolePanel");
+        if (!s || !s.el || !panel || panel.classList.contains("minimized")) return;
+        const rect = s.el.getBoundingClientRect();
+        const panelTop = panel.getBoundingClientRect().top;
+        const availCenter = panelTop * 0.45;
+        if (rect.bottom > panelTop - 16 || rect.top < 16) {
+          const targetY = window.scrollY + rect.top - Math.max(48, availCenter);
+          window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+        }
+      }
+
+      function selectSpan(i, userTriggered = true) {
         if (!state.spans[i] || state.busy) return;
+        if (userTriggered) setDockMinimized(false);
         state.activeIdx = i;
         state.spans.forEach((s) => paintDocBar(s));
         renderBarTabs();
         renderConsole();
         persist();
+        if (userTriggered) setTimeout(scrollActiveBarIntoView, 30);
       }
 
       function stepSpan(dir) {
@@ -1563,6 +1693,7 @@
           const submitted = s.guesses[r];
           const ev = s.evals[r];
           const isCurrentRow = s.status === "pending" && r === s.guesses.length;
+          if (!submitted && !isCurrentRow) row.classList.add("empty-future");
 
           for (let c = 0; c < len; c++) {
             const t = document.createElement("div");
@@ -1584,6 +1715,7 @@
           }
           g.appendChild(row);
         }
+        g.scrollTop = g.scrollHeight;
       }
 
       const ROWS = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
@@ -1621,8 +1753,11 @@
       }
 
       function paintActiveRow(s) {
-        const row = $("grid").children[s.guesses.length];
+        const g = $("grid");
+        const row = g.children[s.guesses.length];
         if (!row) return;
+        const revealedRow = row.classList.contains("empty-future");
+        row.classList.remove("empty-future");
         [...row.children].forEach((t, i) => {
           t.className = "tile";
           if (s.draft[i]) {
@@ -1636,6 +1771,7 @@
           }
           if (i === s.draft.length) t.classList.add("cursor");
         });
+        if (revealedRow) g.scrollTop = g.scrollHeight;
         paintDocBar(s);
       }
 
@@ -1743,11 +1879,12 @@
 
           if (targetNext === -1) {
             state.busy = false;
+            setDockMinimized(true);
             finish(true);
           } else {
             setTimeout(() => {
               state.busy = false;
-              selectSpan(targetNext);
+              selectSpan(targetNext, true);
             }, 650);
           }
         }, settle);
@@ -1770,6 +1907,18 @@
         }, 1400);
       }
 
+      function isRecordDone() {
+        return state.spans.length > 0 && state.spans.every((s) => s.status !== "pending");
+      }
+
+      function updateStatsAccess() {
+        const done = isRecordDone();
+        $("statsBtn").style.display = done ? "" : "none";
+        $("navStatsLi").style.display = done ? "" : "none";
+        $("footStatsLi").style.display = done ? "" : "none";
+        if (!done) $("statsModal").classList.remove("show");
+      }
+
       function updateProgress() {
         const rev = state.spans.filter((s) => s.status === "revealed").length;
         const den = state.spans.filter((s) => s.status === "denied").length;
@@ -1777,6 +1926,7 @@
         $("progress").innerHTML =
           `<span><b>${rev}</b> unredacted · <b>${den}</b> sealed · ${state.spans.length} bars</span>` +
           `<span><b>${totalTries}</b> petitions</span>`;
+        updateStatsAccess();
       }
 
       function recordStats(rev, total) {
@@ -1860,7 +2010,7 @@
             `<div class="eb-word">${s.word}</div>` +
             `<div class="eb-trail">${barTrail(s)}</div>`;
           card.addEventListener("click", () => {
-            selectSpan(idx);
+            selectSpan(idx, true);
             $("doc").scrollIntoView({ behavior: "smooth", block: "nearest" });
           });
           bd.appendChild(card);
@@ -1886,6 +2036,7 @@
       }
 
       function openStats() {
+        if (!isRecordDone()) return;
         renderStats();
         $("statsModal").classList.add("show");
       }
