@@ -567,6 +567,23 @@
       .drow i { font-style: normal; background: #565c65; color: #fff; text-align: right; padding: 2px 6px; font-weight: 700; min-width: 24px; border-radius: 2px; }
       .drow i.now { background: var(--good); }
       .modal .end-actions { margin-top: 16px; }
+      .help-body { font-size: 13px; line-height: 1.55; color: #323a45; }
+      .help-body p { margin-bottom: 10px; }
+      .help-steps { list-style: none; margin: 10px 0 14px; display: flex; flex-direction: column; gap: 8px; }
+      .help-steps li { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 1.45; }
+      .help-num {
+        flex: 0 0 20px; height: 20px; border-radius: 2px; background: var(--navy); color: #fff;
+        font-family: var(--mono); font-size: 11px; font-weight: 700; display: grid; place-items: center; margin-top: 1px;
+      }
+      .help-sample-doc {
+        background: var(--paper); border: 1px solid #c5bca6; border-radius: 2px;
+        padding: 9px 11px; font-family: var(--mono); font-size: 12px; line-height: 1.8; margin-bottom: 12px;
+      }
+      .help-tiles { display: flex; gap: 4px; margin: 6px 0 8px; }
+      .help-tiles .tile { width: 32px; height: 32px; aspect-ratio: 1; font-size: 14px; }
+      .help-legend { display: flex; flex-direction: column; gap: 5px; font-size: 12px; margin-bottom: 14px; }
+      .help-legend div { display: flex; align-items: center; gap: 8px; }
+      .help-swatch { width: 14px; height: 14px; border-radius: 2px; flex: 0 0 14px; display: inline-block; }
 
       .doc-nav {
         display: flex;
@@ -1072,6 +1089,7 @@
       <ul>
         <li><a id="navDaily" class="active">Daily Docket</a></li>
         <li><a id="navRandom">Pull Random Record</a></li>
+        <li><a id="navHelp">How to Play</a></li>
         <li id="navStatsLi" style="display:none;"><a id="navStats">Petition Record</a></li>
         <li class="nav-extra"><a href="#" onclick="return denied(event)">Public Records</a></li>
         <li class="nav-extra"><a href="#" onclick="return denied(event)">FOIA Requests</a></li>
@@ -1151,6 +1169,60 @@
         <p id="nextIn" style="margin-top:6px;font-size:12px;color:#5b616b;"></p>
       </div>
     </main>
+
+    <div class="modal" id="helpModal">
+      <div class="card">
+        <button class="x" aria-label="close" type="button">&times;</button>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <img class="seal-sm" src="seal.svg?v=2" alt="" />
+          <div>
+            <h3>Citizen Declassification Briefing</h3>
+            <div class="formno" style="margin-bottom:0;">form odr-101 · standard operating procedure</div>
+          </div>
+        </div>
+        <div class="help-body">
+          <p>
+            Every day, one real excerpt from the DOJ Epstein release is placed on the docket with
+            <b>four redacted words</b>. Guess each concealed word in <b>6 petitions</b> to unseal it in place.
+          </p>
+          <div class="help-sample-doc">
+            ...met in person with Jane Doe #1 at a
+            <span class="bar active selected" style="cursor:default;animation:none;"><span class="bar-num">#1</span><span class="bcells"><span class="bch known">F</span><span class="bch">█</span><span class="bch known">I</span><span class="bch">█</span><span class="bch">█</span><span class="bch">█</span></span></span>
+            to discuss the <span class="bar revealed" style="cursor:default;animation:none;">federal</span> arrangement...
+          </div>
+          <ul class="help-steps">
+            <li>
+              <span class="help-num">1</span>
+              <span><b>Pick any black bar:</b> Click or tap a redaction bar in the document (or use the <b>#1-#4</b> tabs) to target it. You can switch between bars at any time without losing prior guesses.</span>
+            </li>
+            <li>
+              <span class="help-num">2</span>
+              <span><b>File your petition:</b> Type a valid English word matching the bar's exact letter count and press <b>Enter</b>.</span>
+            </li>
+            <li>
+              <span class="help-num">3</span>
+              <span><b>Read the clearance codes:</b> Tile colors show how close your petition was, and green letters lock directly into the document bar.</span>
+            </li>
+          </ul>
+          <div class="help-tiles" aria-hidden="true">
+            <div class="tile good">F</div>
+            <div class="tile bad">A</div>
+            <div class="tile good">I</div>
+            <div class="tile mid">L</div>
+            <div class="tile bad">E</div>
+            <div class="tile bad">D</div>
+          </div>
+          <div class="help-legend">
+            <div><span class="help-swatch" style="background:var(--good);"></span><span><b>Green:</b> Correct letter in the exact position (locks into the paragraph).</span></div>
+            <div><span class="help-swatch" style="background:var(--mid);"></span><span><b>Amber:</b> Letter is in the word, but in a different position.</span></div>
+            <div><span class="help-swatch" style="background:#dfe1e2;"></span><span><b>Gray:</b> Letter does not appear in the concealed word.</span></div>
+          </div>
+          <div class="end-actions" style="margin-top:14px;">
+            <button class="usa-btn" id="closeHelpBtn" type="button" style="width:100%;">Begin Declassification</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="modal" id="statsModal">
       <div class="card">
@@ -1232,6 +1304,7 @@
       const ARCHIVE_KEY = "epsteindle-records-v2";
       const STATS_KEY = "epsteindle-stats";
       const SOUND_KEY = "epsteindle-sound";
+      const HELP_KEY = "epsteindle-help-seen";
 
       const state = {
         totalCount: 0,
@@ -1393,7 +1466,9 @@
           ]);
           state.totalCount = idx.count;
           WORDS = new Set(words.split(/\r?\n/).map((w) => w.trim().toLowerCase()).filter(Boolean));
+          const isFirstVisit = !load(HELP_KEY) && !load(SAVE_KEY) && !load(STATS_KEY);
           await loadDocket(TODAY_DOCKET_NO, true);
+          if (isFirstVisit) openHelp();
         } catch {
           $("docBody").innerHTML = '<p class="loading">The archive is temporarily unavailable. Please try again during regular business hours.</p>';
         }
@@ -2038,6 +2113,15 @@
         $("nextIn").textContent = `next daily record on the docket in ${h}h ${m}m`;
       }
 
+      function openHelp() {
+        $("helpModal").classList.add("show");
+      }
+
+      function closeHelp() {
+        $("helpModal").classList.remove("show");
+        store(HELP_KEY, 1);
+      }
+
       function openStats() {
         if (!isRecordDone()) return;
         renderStats();
@@ -2053,6 +2137,12 @@
         }
         loadDocket(rnd + 1, false, rnd);
       }
+
+      $("navHelp").addEventListener("click", openHelp);
+      $("closeHelpBtn").addEventListener("click", closeHelp);
+      $("helpModal").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget || e.target.closest(".x")) closeHelp();
+      });
 
       $("statsBtn").addEventListener("click", openStats);
       $("navStats").addEventListener("click", openStats);
@@ -2113,9 +2203,10 @@
         if (e.metaKey || e.ctrlKey || e.altKey) return;
         if (e.key === "Escape") {
           $("statsModal").classList.remove("show");
+          if ($("helpModal").classList.contains("show")) closeHelp();
           return;
         }
-        if ($("statsModal").classList.contains("show")) return;
+        if ($("statsModal").classList.contains("show") || $("helpModal").classList.contains("show")) return;
         if (e.key === "Tab") {
           e.preventDefault();
           return stepSpan(e.shiftKey ? -1 : 1);
