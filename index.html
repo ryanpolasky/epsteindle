@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#112e51" />
+    <title>epsteindle.gov | Office of Interactive Declassification</title>
+    <meta
+      name="description"
+      content="An official website of the Department of Redaction Affairs. Guess the blacked-out words in real public records."
+    />
+    <style>
+      :root {
+        --navy: #112e51;
+        --blue: #0071bc;
+        --blue-dark: #205493;
+        --gold: #fdb81e;
+        --paper: #e8e0cc;
+        --ink: #1c1a15;
+        --redact: #141311;
+        --stamp: #8b1f1f;
+        --good: #2e8540;
+        --mid: #a8762a;
+        --gray-bg: #f1f1f1;
+        --gray-line: #aeb0b5;
+        --sans: -apple-system, "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        --mono: "Courier New", ui-monospace, Menlo, monospace;
+        --serif: Georgia, "Times New Roman", serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: var(--gray-bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ---- official banner ---- */
+      .gov-banner {
+        background: var(--gray-bg);
+        border-bottom: 1px solid var(--gray-line);
+        font-size: 12px;
+        padding: 6px 16px;
+        color: #323a45;
+      }
+      .gov-banner .inner {
+        max-width: 1060px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .flag { display: inline-flex; width: 18px; height: 12px; }
+      .flag svg { display: block; }
+      .gov-banner .how {
+        color: var(--blue-dark);
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .gov-banner .how span.caret { display: inline-block; transition: transform 0.15s; }
+      .gov-banner .how.open .caret { transform: rotate(180deg); }
+      .how-panel {
+        display: none;
+        max-width: 1060px;
+        margin: 8px auto 4px;
+        padding: 14px 16px;
+        border: 1px solid var(--gray-line);
+        background: #fff;
+        font-size: 13px;
+        line-height: 1.6;
+        color: #323a45;
+      }
+      .how-panel.show { display: block; }
+      .how-panel b { display: block; margin-bottom: 4px; }
+      .how-panel .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+      .how-panel .dot {
+        display: inline-block;
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        background: var(--blue-dark);
+        color: #fff;
+        text-align: center;
+        line-height: 34px;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+
+      /* ---- masthead ---- */
+      .masthead {
+        background: #fff;
+        border-bottom: 1px solid var(--gray-line);
+      }
+      .masthead .inner {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 18px 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .seal { width: 64px; height: 64px; flex: 0 0 64px; }
+      .agency-name {
+        font-family: var(--serif);
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #5b616b;
+      }
+      .site-title {
+        font-family: var(--serif);
+        font-size: clamp(22px, 4vw, 32px);
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+      }
+      .site-title .tld { color: var(--blue-dark); }
+      .masthead .search {
+        margin-left: auto;
+        display: flex;
+        border: 1px solid #565c65;
+        height: 34px;
+      }
+      .masthead .search input {
+        border: none;
+        padding: 0 10px;
+        font-size: 13px;
+        width: 170px;
+      }
+      .masthead .search button {
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        padding: 0 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      nav.main-nav {
+        background: var(--navy);
+      }
+      nav.main-nav ul {
+        max-width: 1060px;
+        margin: 0 auto;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      nav.main-nav a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 12px 16px;
+      }
+      nav.main-nav a:hover { background: var(--blue-dark); }
+      nav.main-nav a.active { box-shadow: inset 0 -4px 0 var(--gold); }
+      .breadcrumb {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 8px 16px;
+        font-size: 12px;
+        color: #5b616b;
+      }
+      .breadcrumb a { color: var(--blue-dark); text-decoration: none; }
+      .breadcrumb .sep { margin: 0 6px; color: var(--gray-line); }
+
+      /* ---- alert ---- */
+      .alert {
+        max-width: 1060px;
+        margin: 18px auto 0;
+        padding: 0 16px;
+      }
+      .alert .box {
+        border-left: 6px solid var(--gold);
+        background: #fff9db;
+        padding: 12px 14px;
+        font-size: 13px;
+        line-height: 1.55;
+        color: #323a45;
+      }
+      .alert .box b { text-transform: uppercase; letter-spacing: 0.04em; }
+
+      /* ---- page body ---- */
+      .page {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 20px 16px 40px;
+      }
+      .page h1 {
+        font-family: var(--serif);
+        font-size: clamp(24px, 4vw, 34px);
+        color: var(--navy);
+        margin-bottom: 6px;
+      }
+      .page .lede {
+        font-size: 15px;
+        color: #323a45;
+        max-width: 640px;
+        margin-bottom: 22px;
+        line-height: 1.6;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 310px;
+        gap: 22px;
+        align-items: start;
+      }
+      @media (max-width: 860px) {
+        .layout { grid-template-columns: minmax(0, 1fr); }
+      }
+
+      /* ---- the scanned record ---- */
+      .doc {
+        position: relative;
+        background:
+          radial-gradient(ellipse at 30% 20%, rgba(0,0,0,0.05), transparent 60%),
+          repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,0.012) 3px 4px),
+          var(--paper);
+        border-radius: 2px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.28), inset 0 0 60px rgba(90,70,30,0.15);
+        padding: clamp(18px, 4vw, 44px);
+        overflow: hidden;
+        font-family: var(--mono);
+      }
+      .doc::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.25) 48%, transparent 56%);
+        mix-blend-mode: overlay;
+      }
+      .doc-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 10px;
+        margin: 34px 0 18px;
+        flex-wrap: wrap;
+      }
+      .doc-head .from { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
+      .doc-head .caseno { font-size: 11px; color: #5a5340; }
+      .doc h2 {
+        font-size: clamp(15px, 2.4vw, 20px);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 4px;
+      }
+      .doc .sub { font-size: 12px; color: #5a5340; margin-bottom: 16px; font-style: italic; }
+      .doc p {
+        font-size: clamp(13px, 1.9vw, 15.5px);
+        line-height: 2.1;
+        margin-bottom: 14px;
+        text-align: justify;
+      }
+      .bar {
+        display: inline-block;
+        position: relative;
+        vertical-align: baseline;
+        background: var(--redact);
+        color: transparent;
+        border-radius: 1px;
+        padding: 0 3px;
+        transform: rotate(-0.6deg);
+        cursor: default;
+        user-select: none;
+        letter-spacing: 0.08em;
+      }
+      .bar.active {
+        cursor: pointer;
+        animation: barpulse 1.4s ease-in-out infinite;
+      }
+      @keyframes barpulse {
+        0%, 100% { box-shadow: 0 0 0 2px rgba(139,31,31,0.9); }
+        50% { box-shadow: 0 0 0 4px rgba(139,31,31,0.35); }
+      }
+      .bar.revealed {
+        background: transparent;
+        color: var(--stamp);
+        font-weight: 700;
+        transform: none;
+        box-shadow: none;
+        animation: reveal 0.5s ease;
+        padding: 0;
+      }
+      @keyframes reveal {
+        0% { background: var(--redact); color: transparent; }
+        60% { background: var(--stamp); color: var(--stamp); }
+        100% { background: transparent; color: var(--stamp); }
+      }
+      .bar.denied::after {
+        content: "DENIED";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: rgba(232,224,204,0.75);
+        font-size: 9px;
+        letter-spacing: 0.3em;
+        transform: rotate(0.6deg);
+      }
+      .bar.doj { background: #000; transform: rotate(0.4deg); cursor: help; padding: 0 2px; }
+      .loading { font-style: italic; color: #5a5340; text-align: center; padding: 30px 0; }
+      .src { font-size: 12px; margin-top: 10px; color: #5b616b; }
+      .src a { color: var(--blue-dark); }
+      .end-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+      .usa-btn.outline { background: #fff; color: var(--blue); box-shadow: inset 0 0 0 2px var(--blue); }
+      .usa-btn.outline:hover { background: #f1f1f1; }
+      .stats-link {
+        margin-top: 10px; background: none; border: none; padding: 0; cursor: pointer;
+        font: inherit; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--blue-dark); text-decoration: underline;
+      }
+      .modal {
+        position: fixed; inset: 0; background: rgba(17,46,81,0.55); display: none;
+        place-items: center; z-index: 50; padding: 16px;
+      }
+      .modal.show { display: grid; }
+      .modal .card {
+        background: #fff; width: min(420px, 100%); border-top: 8px solid var(--navy);
+        padding: 22px 22px 18px; position: relative; box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      }
+      .modal h3 { font-family: var(--serif); color: var(--navy); font-size: 20px; margin-bottom: 2px; }
+      .modal .formno { font-size: 10px; letter-spacing: 0.14em; color: #5b616b; text-transform: uppercase; margin-bottom: 16px; }
+      .modal .x { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 22px; cursor: pointer; color: #5b616b; }
+      .stat-nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; text-align: center; margin-bottom: 18px; }
+      .stat-nums b { display: block; font-family: var(--serif); font-size: 28px; color: var(--ink); }
+      .stat-nums span { font-size: 10px; line-height: 1.2; color: #5b616b; text-transform: uppercase; letter-spacing: 0.05em; }
+      .modal h4 { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+      .drow { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 12px; }
+      .drow span { width: 12px; font-weight: 700; }
+      .drow i { font-style: normal; background: #565c65; color: #fff; text-align: right; padding: 2px 6px; font-weight: 700; min-width: 22px; }
+      .drow i.now { background: var(--good); }
+      .modal .end-actions { margin-top: 16px; }
+      .stamp {
+        position: absolute;
+        top: 10px;
+        right: 22px;
+        border: 3px double var(--stamp);
+        color: var(--stamp);
+        padding: 6px 12px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        transform: rotate(6deg);
+        opacity: 0.85;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+      .doc-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 14px;
+        font-size: 12px;
+        color: #5a5340;
+      }
+      .doc-nav button {
+        font-family: var(--mono);
+        background: var(--ink);
+        color: var(--paper);
+        border: none;
+        padding: 9px 16px;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .doc-nav button:disabled { opacity: 0.35; cursor: not-allowed; }
+      .doc-nav button:hover:not(:disabled) { background: var(--stamp); }
+
+      /* ---- official terminal panel ---- */
+      .panel {
+        background: #fff;
+        border: 1px solid var(--gray-line);
+        border-top: 4px solid var(--navy);
+        color: var(--ink);
+        padding: 16px;
+        position: sticky;
+        top: 16px;
+      }
+      .panel h3 {
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .panel .terminal-id {
+        font-size: 11px;
+        color: #5b616b;
+        margin-bottom: 12px;
+      }
+      .prompt-line { font-size: 13px; color: #323a45; margin-bottom: 12px; min-height: 36px; line-height: 1.5; }
+      .grid { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+      .row { display: grid; grid-template-columns: repeat(var(--cols, 5), minmax(0, 34px)); gap: 5px; }
+      .tile {
+        aspect-ratio: 1;
+        border: 1px solid #565c65;
+        display: grid;
+        place-items: center;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--ink);
+        background: #fff;
+      }
+      .tile.filled { border-color: var(--navy); animation: pop 0.08s ease; }
+      @keyframes pop { 50% { transform: scale(1.12); } }
+      .tile.good { background: var(--good); border-color: var(--good); color: #fff; }
+      .tile.mid { background: var(--mid); border-color: var(--mid); color: #fff; }
+      .tile.bad { background: #dfe1e2; border-color: #dfe1e2; color: #757575; }
+      .row.shake { animation: shake 0.4s; }
+      @keyframes shake {
+        20%, 60% { transform: translateX(-5px); }
+        40%, 80% { transform: translateX(5px); }
+      }
+      .kbd { display: flex; flex-direction: column; gap: 6px; }
+      .kbd-row { display: flex; gap: 4px; justify-content: center; }
+      .key {
+        flex: 1;
+        max-width: 34px;
+        height: 42px;
+        background: #dfe1e2;
+        color: var(--ink);
+        border: none;
+        border-radius: 3px;
+        font-family: var(--sans);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .key.wide { max-width: 52px; font-size: 10px; }
+      .key:hover { background: #c9cbcd; }
+      .key.good { background: var(--good); color: #fff; }
+      .key.mid { background: var(--mid); color: #fff; }
+      .key.bad { background: #adadad; color: #565656; }
+      .progress {
+        margin-top: 14px;
+        padding-top: 10px;
+        border-top: 1px solid var(--gray-line);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: #5b616b;
+        text-transform: uppercase;
+      }
+      .progress b { color: var(--navy); }
+      .usa-btn {
+        display: inline-block;
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: var(--sans);
+      }
+      .usa-btn:hover { background: var(--blue-dark); }
+
+      /* ---- end card ---- */
+      .endcard {
+        margin-top: 22px;
+        border: 1px solid var(--gray-line);
+        border-top: 6px solid var(--stamp);
+        background: #fff;
+        padding: 22px;
+        text-align: center;
+      }
+      .endcard h2 {
+        font-family: var(--serif);
+        color: var(--stamp);
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+        font-size: 22px;
+      }
+      .endcard p { font-size: 13.5px; line-height: 1.7; color: #323a45; }
+
+      /* ---- footer ---- */
+      footer.gov {
+        background: var(--navy);
+        color: #fff;
+        margin-top: 30px;
+      }
+      .gov .cols {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 28px 16px;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 24px;
+      }
+      @media (max-width: 720px) {
+        .gov .cols { grid-template-columns: 1fr 1fr; }
+      }
+      .gov h4 {
+        font-family: var(--serif);
+        font-size: 17px;
+        margin-bottom: 10px;
+      }
+      .gov ul { list-style: none; }
+      .gov li { margin-bottom: 6px; }
+      .gov a {
+        color: #dce4ef;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      .gov a:hover { text-decoration: underline; }
+      .gov .agency-block { font-size: 13px; line-height: 1.6; color: #b8c4d6; }
+      .gov .tagline {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 0 16px 24px;
+        font-size: 12px;
+        color: #8fa3bf;
+        border-top: 1px solid #2a4a73;
+        padding-top: 16px;
+      }
+      @media (max-width: 560px) {
+        .doc p { text-align: left; }
+        .panel { position: static; }
+        .masthead .search { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gov-banner">
+      <div class="inner">
+        <span class="flag">
+          <svg viewBox="0 0 19 12" xmlns="http://www.w3.org/2000/svg">
+            <rect width="19" height="12" fill="#b31942"/>
+            <rect y="1.85" width="19" height="0.92" fill="#fff"/>
+            <rect y="3.7" width="19" height="0.92" fill="#fff"/>
+            <rect y="5.54" width="19" height="0.92" fill="#fff"/>
+            <rect y="7.38" width="19" height="0.92" fill="#fff"/>
+            <rect y="9.23" width="19" height="0.92" fill="#fff"/>
+            <rect y="11.08" width="19" height="0.92" fill="#fff"/>
+            <rect width="8" height="6.5" fill="#0a3161"/>
+          </svg>
+        </span>
+        <span>An official website of the <b>Department of Redaction Affairs</b></span>
+        <a class="how" id="howBtn">Here's how you know <span class="caret">▾</span></a>
+      </div>
+      <div class="how-panel" id="howPanel">
+        <div class="cols">
+          <div>
+            <span class="dot">.gov</span>
+            <b>Official websites use .gov</b>
+            A <b>epsteindle.gov</b> website belongs to an official government-adjacent organization in the United States, probably.
+          </div>
+          <div>
+            <span class="dot">🔒</span>
+            <b>Secure .gov websites use HTTPS</b>
+            A lock or https:// means the blacked-out words you guess are safely transmitted to absolutely no one. All guessing happens on your machine. The government couldn't even if it wanted to.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="masthead">
+      <div class="inner">
+        <svg class="seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="40" cy="40" r="38" fill="#112e51"/>
+          <circle cx="40" cy="40" r="33" fill="none" stroke="#fdb81e" stroke-width="1.5"/>
+          <text x="40" y="30" text-anchor="middle" fill="#fff" font-size="7" font-family="Georgia,serif" letter-spacing="1">DEPARTMENT OF</text>
+          <text x="40" y="38" text-anchor="middle" fill="#fff" font-size="6" font-family="Georgia,serif" letter-spacing="0.5">REDACTION AFFAIRS</text>
+          <rect x="24" y="44" width="32" height="7" fill="#141311"/>
+          <text x="40" y="60" text-anchor="middle" fill="#fdb81e" font-size="5.5" font-family="Georgia,serif">E PLURIBUS REDACTUM</text>
+        </svg>
+        <div>
+          <div class="agency-name">Department of Redaction Affairs</div>
+          <div class="site-title">Office of Interactive Declassification <span class="tld">· epsteindle.gov</span></div>
+        </div>
+        <form class="search" onsubmit="return false">
+          <input type="search" placeholder="Search redacted terms…" aria-label="Search" />
+          <button type="submit">⌕</button>
+        </form>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#" onclick="return denied(event)">Public Records</a></li>
+        <li><a href="#" onclick="return denied(event)">FOIA Requests</a></li>
+        <li><a href="#" onclick="return denied(event)">Declassification Terminal</a></li>
+        <li><a href="#" onclick="return denied(event)">About the Office</a></li>
+        <li><a href="#" onclick="return denied(event)">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="breadcrumb">
+      <a href="#">Home</a><span class="sep">›</span><a href="#" onclick="return denied(event)">Records</a><span class="sep">›</span>Interactive Declassification Terminal
+    </div>
+
+    <div class="alert">
+      <div class="box">
+        <b>Notice:</b> The passages below are verbatim reproductions of real public records. One new record is pulled from the DOJ's own Epstein release every day. The black bars, however, are applied by this office for training purposes. <b>The government did it better.</b>
+      </div>
+    </div>
+
+    <main class="page">
+      <h1>Interactive Declassification Terminal</h1>
+      <p class="lede">
+        Citizens may petition the black bars directly. Guess the word concealed beneath each
+        redaction. Correct petitions declassify the word in place. Six failed petitions and the
+        word remains sealed pursuant to §52.3(b) of the Full Disclosure Act.*
+      </p>
+
+      <div class="layout">
+        <section class="doc" id="doc">
+          <div class="stamp">UNSEALED*</div>
+          <div class="doc-head">
+            <div class="from" id="docFrom"></div>
+            <div class="caseno" id="docCase"></div>
+          </div>
+          <h2 id="docTitle"></h2>
+          <div class="sub" id="docSub"></div>
+          <div id="docBody"><p class="loading">Retrieving today's record from the archive…</p></div>
+          <div class="doc-nav">
+            <span id="docIndex"></span>
+            <span class="caseno">one record per day. same for everyone.</span>
+          </div>
+        </section>
+
+        <aside class="panel">
+          <h3>Petition Console</h3>
+          <div class="terminal-id">TERMINAL 7-G · FORM ODR-88 (REV. 07/2025)</div>
+          <div class="prompt-line" id="promptLine"></div>
+          <div class="grid" id="grid"></div>
+          <div class="kbd" id="kbd"></div>
+          <div class="progress" id="progress"></div>
+          <button class="stats-link" id="statsBtn">view your petition record</button>
+        </aside>
+      </div>
+
+      <div class="endcard" id="endWrap" style="display:none;">
+        <h2 id="endTitle"></h2>
+        <p id="endBody"></p>
+        <div id="shareSquares" style="margin:14px 0;font-size:22px;letter-spacing:4px;"></div>
+        <div class="end-actions">
+          <button class="usa-btn share">copy results</button>
+          <button class="usa-btn outline" onclick="openStats()">petition record</button>
+        </div>
+        <p class="src">unredacted* original: <a id="srcLink" target="_blank" rel="noopener"></a></p>
+        <p id="nextIn" style="margin-top:6px;font-size:12px;color:#5b616b;"></p>
+      </div>
+    </main>
+
+    <div class="modal" id="statsModal">
+      <div class="card">
+        <button class="x" aria-label="close">&times;</button>
+        <h3>Your Petition Record</h3>
+        <div class="formno">form odr-88a · retained indefinitely, allegedly</div>
+        <div class="stat-nums" id="statNums"></div>
+        <h4>words declassified per record</h4>
+        <div id="statDist"></div>
+        <div class="end-actions"><button class="usa-btn share">copy results</button></div>
+      </div>
+    </div>
+
+    <footer class="gov">
+      <div class="cols">
+        <div>
+          <h4>Department of Redaction Affairs</h4>
+          <div class="agency-block">
+            Office of Interactive Declassification<br/>
+            1400 Blackmarker Blvd NW<br/>
+            Washington, DC 20000<br/><br/>
+            1-800-REDACT-ED<br/>
+            petitions@epsteindle.gov
+          </div>
+        </div>
+        <div>
+          <h4>Records</h4>
+          <ul>
+            <li><a href="#" onclick="return denied(event)">Reading Room</a></li>
+            <li><a href="#" onclick="return denied(event)">FOIA Library</a></li>
+            <li><a href="#" onclick="return denied(event)">Mandatory Declassification Review</a></li>
+            <li><a href="#" onclick="return denied(event)">Black Binder, Phase 1</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#" onclick="return denied(event)">Privacy Act</a></li>
+            <li><a href="#" onclick="return denied(event)">Exemptions (b)(1)–(b)(9)</a></li>
+            <li><a href="#" onclick="return denied(event)">Plain Language</a></li>
+            <li><a href="#" onclick="return denied(event)">No FEAR Act</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Government</h4>
+          <ul>
+            <li><a href="#" onclick="return denied(event)">USA.gov</a></li>
+            <li><a href="#" onclick="return denied(event)">Inspector General</a></li>
+            <li><a href="#" onclick="return denied(event)">Accessibility</a></li>
+            <li><a href="#" onclick="return denied(event)">Open Government</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tagline">
+        *There is no Full Disclosure Act. Every record on the docket is a verbatim excerpt of a real page
+        from the DOJ Epstein Library (Data Sets 1–12, released under the Epstein Files Transparency Act),
+        via the text corpus at github.com/rhowardstone/Epstein-research-data. Solid black bars marked as
+        such were redacted by the actual government; the rest are ours. *Unsealed by you, allegedly.
+        This is a parody site. It is not an official website.
+      </div>
+    </footer>
+
+    <script>
+      const MAX_GUESSES = 6;
+      const EPOCH = 20738;
+      const DAY = Math.floor((Date.now() - new Date().getTimezoneOffset() * 6e4) / 864e5);
+      const DOCKET_NO = DAY - EPOCH + 1;
+      const SAVE_KEY = "epsteindle-daily";
+      const STATS_KEY = "epsteindle-stats";
+      const state = { doc: null, spans: [], guess: "", row: 0, keyState: {}, busy: false };
+      let WORDS = new Set();
+
+      const load = (k) => { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } };
+      const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+      const saved = load(SAVE_KEY);
+      const persist = () => store(SAVE_KEY, { day: DAY, efta: state.doc.efta, statuses: state.spans.map((s) => s.status) });
+      const $ = (id) => document.getElementById(id);
+      const squares = () => state.spans.map((s) => (s.status === "revealed" ? "\u{1F7E9}" : "\u2B1B")).join("");
+
+      async function boot() {
+        try {
+          const [idx, words] = await Promise.all([
+            fetch("docket/index.json").then((r) => r.json()),
+            fetch("words.txt").then((r) => r.text()),
+          ]);
+          WORDS = new Set(words.split("\n"));
+          const n = ((DAY - EPOCH) % idx.count + idx.count) % idx.count;
+          state.doc = await fetch(`docket/${n}.json`).then((r) => r.json());
+          renderDoc();
+        } catch {
+          $("docBody").innerHTML = '<p class="loading">The archive is temporarily unavailable. Please try again during regular business hours.</p>';
+        }
+      }
+
+      function renderDoc() {
+        const d = state.doc;
+        $("docFrom").textContent = d.from;
+        $("docCase").textContent = d.caseno;
+        $("docTitle").textContent = d.kind;
+        $("docSub").textContent = [d.case, `${d.efta} · page ${d.page} · DOJ Data Set ${d.dataset}`].filter(Boolean).join(" — ");
+        $("docIndex").textContent =
+          `docket №${DOCKET_NO} — ${new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`;
+        const body = $("docBody");
+        body.innerHTML = "";
+        state.spans = [];
+        d.paras.forEach((para) => {
+          const p = document.createElement("p");
+          para.forEach((chunk) => {
+            if (typeof chunk === "string") return p.appendChild(document.createTextNode(chunk));
+            const b = document.createElement("span");
+            if (chunk.doj) {
+              b.className = "bar doj";
+              b.textContent = "\u2588\u2588\u2588\u2588\u2588";
+              b.title = "Redacted by the actual DOJ. Petitions not accepted.";
+              return p.appendChild(b);
+            }
+            b.className = "bar";
+            b.textContent = chunk.w.replace(/./g, "\u2588");
+            const idx = state.spans.length;
+            b.addEventListener("click", () => activateSpan(idx));
+            p.appendChild(b);
+            state.spans.push({ el: b, word: chunk.w.toUpperCase(), text: chunk.t || chunk.w, status: "pending" });
+          });
+          body.appendChild(p);
+        });
+        const restore = saved && saved.day === DAY && saved.efta === d.efta ? saved.statuses : [];
+        restore.forEach((st, i) => {
+          const s = state.spans[i];
+          if (!s || (st !== "revealed" && st !== "denied")) return;
+          s.status = st;
+          s.el.classList.add(st);
+          if (st === "revealed") s.el.textContent = s.text;
+        });
+        updateProgress();
+        const first = state.spans.findIndex((s) => s.status === "pending");
+        if (first === -1) finish(false);
+        else activateSpan(first);
+      }
+
+      const activeSpan = () => state.spans.find((s) => s.status === "active");
+
+      function activateSpan(i) {
+        const s = state.spans[i];
+        if (!s || s.status !== "pending" || state.busy) return;
+        const cur = activeSpan();
+        if (cur) {
+          cur.status = "pending";
+          cur.el.classList.remove("active");
+        }
+        s.status = "active";
+        s.el.classList.add("active");
+        state.guess = "";
+        state.row = 0;
+        state.keyState = {};
+        buildGrid(s.word.length);
+        buildKeyboard();
+        $("promptLine").innerHTML =
+          `Petition pending: a <b>${s.word.length}</b>-character redaction. ` +
+          `${MAX_GUESSES} attempts authorized. Type or click.`;
+      }
+
+      function buildGrid(len) {
+        const g = $("grid");
+        g.innerHTML = "";
+        g.style.setProperty("--cols", len);
+        for (let r = 0; r < MAX_GUESSES; r++) {
+          const row = document.createElement("div");
+          row.className = "row";
+          for (let c = 0; c < len; c++) {
+            const t = document.createElement("div");
+            t.className = "tile";
+            row.appendChild(t);
+          }
+          g.appendChild(row);
+        }
+      }
+
+      const ROWS = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+      function buildKeyboard() {
+        const k = $("kbd");
+        k.innerHTML = "";
+        ROWS.forEach((letters, ri) => {
+          const r = document.createElement("div");
+          r.className = "kbd-row";
+          if (ri === 2) r.appendChild(mkKey("ENTER", "wide", onEnter));
+          for (const ch of letters) r.appendChild(mkKey(ch, "", () => typeLetter(ch)));
+          if (ri === 2) r.appendChild(mkKey("\u232B", "wide", onBack));
+          k.appendChild(r);
+        });
+      }
+      function mkKey(label, cls, fn) {
+        const b = document.createElement("button");
+        b.className = "key " + cls;
+        b.textContent = label;
+        b.dataset.key = label === "\u232B" ? "BACK" : label;
+        b.addEventListener("click", (e) => { e.currentTarget.blur(); fn(); });
+        return b;
+      }
+      function paintKeyboard() {
+        document.querySelectorAll(".key").forEach((k) => {
+          const st = state.keyState[k.dataset.key];
+          k.classList.remove("good", "mid", "bad");
+          if (st) k.classList.add(st);
+        });
+      }
+
+      function typeLetter(ch) {
+        const s = activeSpan();
+        if (!s || state.busy || state.guess.length >= s.word.length) return;
+        state.guess += ch;
+        paintRow();
+      }
+      function onBack() {
+        if (state.busy) return;
+        state.guess = state.guess.slice(0, -1);
+        paintRow();
+      }
+      function paintRow() {
+        const row = $("grid").children[state.row];
+        if (!row) return;
+        [...row.children].forEach((t, i) => {
+          t.textContent = state.guess[i] || "";
+          t.classList.toggle("filled", !!state.guess[i]);
+        });
+      }
+
+      function onEnter() {
+        const s = activeSpan();
+        if (!s || state.busy) return;
+        if (state.guess.length !== s.word.length) return reject("INCOMPLETE PETITION");
+        if (!WORDS.has(state.guess.toLowerCase()) && state.guess !== s.word) {
+          reject("REJECTED: NOT A WORD");
+          state.guess = "";
+          return paintRow();
+        }
+        const row = $("grid").children[state.row];
+        const ans = s.word.split("");
+        const guess = state.guess.split("");
+        const used = Array(ans.length).fill(false);
+        const result = Array(ans.length).fill("bad");
+        guess.forEach((ch, i) => {
+          if (ch === ans[i]) { result[i] = "good"; used[i] = true; }
+        });
+        guess.forEach((ch, i) => {
+          if (result[i] === "good") return;
+          const j = ans.findIndex((a, ai) => !used[ai] && a === ch);
+          if (j !== -1) { result[i] = "mid"; used[j] = true; }
+        });
+        const rank = { good: 3, mid: 2, bad: 1 };
+        [...row.children].forEach((t, i) => {
+          setTimeout(() => t.classList.add(result[i]), i * 90);
+          const cur = state.keyState[guess[i]];
+          if (!cur || rank[result[i]] > rank[cur]) state.keyState[guess[i]] = result[i];
+        });
+        const settle = s.word.length * 90 + 380;
+        state.busy = true;
+        setTimeout(paintKeyboard, settle - 300);
+        const won = state.guess === s.word;
+        state.row++;
+        state.guess = "";
+        if (!won && state.row < MAX_GUESSES) return setTimeout(() => (state.busy = false), settle - 300);
+        setTimeout(() => {
+          state.busy = false;
+          s.status = won ? "revealed" : "denied";
+          s.el.classList.remove("active");
+          s.el.classList.add(s.status);
+          if (won) s.el.textContent = s.text;
+          nextSpan();
+        }, settle);
+      }
+
+      function reject(msg) {
+        const p = $("promptLine");
+        if (!p.dataset.prev) p.dataset.prev = p.innerHTML;
+        p.innerHTML = `<b style="color:#8b1f1f">${msg}</b>`;
+        const row = $("grid").children[state.row];
+        if (row) {
+          row.classList.add("shake");
+          setTimeout(() => row.classList.remove("shake"), 450);
+        }
+        clearTimeout(reject.t);
+        reject.t = setTimeout(() => {
+          if (activeSpan()) p.innerHTML = p.dataset.prev;
+          delete p.dataset.prev;
+        }, 1300);
+      }
+
+      function nextSpan() {
+        updateProgress();
+        persist();
+        const next = state.spans.findIndex((s) => s.status === "pending");
+        if (next !== -1) return activateSpan(next);
+        $("promptLine").innerHTML = "Docket complete for this record. Return tomorrow.";
+        $("grid").innerHTML = "";
+        $("kbd").innerHTML = "";
+        finish(true);
+      }
+
+      function updateProgress() {
+        const rev = state.spans.filter((s) => s.status === "revealed").length;
+        const den = state.spans.filter((s) => s.status === "denied").length;
+        $("progress").innerHTML =
+          `docket: <b>${rev}</b> declassified / <b>${den}</b> sealed / ${state.spans.length} bars`;
+      }
+
+      function recordStats(rev, total) {
+        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, last: null, dist: {} };
+        if (st.last === DAY) return st;
+        st.played++;
+        st.dist[rev] = (st.dist[rev] || 0) + 1;
+        if (rev === total) {
+          st.full++;
+          st.streak = st.lastFull === DAY - 1 ? st.streak + 1 : 1;
+          st.lastFull = DAY;
+          st.best = Math.max(st.best, st.streak);
+        } else st.streak = 0;
+        st.last = DAY;
+        store(STATS_KEY, st);
+        return st;
+      }
+
+      function renderStats() {
+        const st = load(STATS_KEY) || { played: 0, full: 0, streak: 0, best: 0, dist: {} };
+        const pct = st.played ? Math.round((100 * st.full) / st.played) : 0;
+        $("statNums").innerHTML = [
+          [st.played, "records reviewed"], [pct, "% granted in full"], [st.streak, "current streak"], [st.best, "longest streak"],
+        ].map(([n, l]) => `<div><b>${n}</b><span>${l}</span></div>`).join("");
+        const max = Math.max(1, ...Object.values(st.dist));
+        const today = state.spans.filter((s) => s.status === "revealed").length;
+        const done = st.last === DAY;
+        $("statDist").innerHTML = [0, 1, 2, 3, 4].map((k) => {
+          const v = st.dist[k] || 0;
+          return `<div class="drow"><span>${k}</span><i class="${done && k === today ? "now" : ""}" style="width:${8 + (92 * v) / max}%">${v}</i></div>`;
+        }).join("");
+      }
+
+      function finish(animate) {
+        const rev = state.spans.filter((s) => s.status === "revealed").length;
+        const den = state.spans.length - rev;
+        const total = state.spans.length;
+        recordStats(rev, total);
+        $("endWrap").style.display = "";
+        $("endTitle").textContent = rev === total ? "PETITION GRANTED IN FULL" : rev === 0 ? "PETITION DENIED IN FULL" : `${rev}/${total} WORDS DECLASSIFIED`;
+        $("endBody").innerHTML =
+          `This office has processed <b>${rev}</b> successful petition${rev === 1 ? "" : "s"} today. ` +
+          `<b>${den}</b> word${den === 1 ? "" : "s"} remain${den === 1 ? "s" : ""} sealed.<br/>` +
+          (rev === total
+            ? "Congress took six years and an act of law. You took a lunch break."
+            : rev === 0
+            ? "Congratulations. You have been offered a position at the Department."
+            : "The department thanks you for your cooperation.");
+        $("shareSquares").textContent = squares();
+        $("srcLink").href = state.doc.url;
+        $("srcLink").textContent = `${state.doc.efta}.pdf — justice.gov`;
+        tickCountdown();
+        setInterval(tickCountdown, 30000);
+        if (animate) {
+          setTimeout(() => openStats(), 900);
+          $("endWrap").scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+
+      function tickCountdown() {
+        const now = new Date();
+        const mid = new Date(now);
+        mid.setHours(24, 0, 0, 0);
+        const ms = mid - now;
+        const h = Math.floor(ms / 36e5), m = Math.floor((ms % 36e5) / 6e4);
+        $("nextIn").textContent = `next record on the docket in ${h}h ${m}m`;
+      }
+
+      function openStats() {
+        renderStats();
+        $("statsModal").classList.add("show");
+      }
+      $("statsBtn").addEventListener("click", openStats);
+      $("statsModal").addEventListener("click", (e) => {
+        if (e.target === e.currentTarget || e.target.closest(".x")) $("statsModal").classList.remove("show");
+      });
+
+      async function share(btn) {
+        const rev = state.spans.filter((s) => s.status === "revealed").length;
+        const text = `epsteindle docket №${DOCKET_NO}\n${squares()} ${rev}/${state.spans.length} words declassified\n${location.origin}${location.pathname}`;
+        const label = btn.textContent;
+        try {
+          await navigator.clipboard.writeText(text);
+          btn.textContent = "copied. redact responsibly.";
+        } catch {
+          btn.textContent = "clipboard denied by the department";
+        }
+        setTimeout(() => (btn.textContent = label), 2200);
+      }
+      document.querySelectorAll(".share").forEach((b) => b.addEventListener("click", () => share(b)));
+
+      document.addEventListener("keydown", (e) => {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        if (e.key === "Escape") return $("statsModal").classList.remove("show");
+        if (e.key === "Enter") { e.preventDefault(); return onEnter(); }
+        if (e.key === "Backspace") return onBack();
+        if (/^[a-zA-Z]$/.test(e.key)) typeLetter(e.key.toUpperCase());
+      });
+
+      function denied(e) {
+        e.preventDefault();
+        const el = e.currentTarget;
+        el.textContent = "[ REDACTED ]";
+        el.style.pointerEvents = "none";
+        el.style.color = "#8b8b8b";
+        return false;
+      }
+
+      $("howBtn").addEventListener("click", () => {
+        $("howPanel").classList.toggle("show");
+        $("howBtn").classList.toggle("open");
+      });
+
+      boot();
+    </script>
+  </body>
+</html>
