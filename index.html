@@ -787,6 +787,40 @@
       .tile.mid { background: var(--mid); border-color: var(--mid); border-style: solid; color: #fff; }
       .tile.bad { background: #dfe1e2; border-color: #dfe1e2; border-style: solid; color: #6e7378; }
       .row.shake { animation: shake 0.4s; }
+      .row.hint-row { display: flex; justify-content: center; }
+      .hint-tile {
+        flex: 1;
+        max-width: calc(var(--cols, 5) * 36px + (var(--cols, 5) - 1) * var(--gap, 5px));
+        min-height: 36px;
+        border: 1.5px dashed #8d9297;
+        background: #f6f1e3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px 8px;
+        font-family: var(--mono);
+        font-size: 10.5px;
+        line-height: 1.25;
+        letter-spacing: 0.04em;
+        text-align: center;
+        text-transform: uppercase;
+        color: #323a45;
+      }
+      .foia { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; margin: -4px 0 12px; }
+      .foia button {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        background: #fff;
+        color: var(--navy);
+        border: 1px dashed #8d9297;
+        padding: 5px 9px;
+        cursor: pointer;
+      }
+      .foia button:hover:not(:disabled) { border-color: var(--blue); color: var(--blue); }
+      .foia button:disabled { opacity: 0.45; cursor: not-allowed; }
+      .foia button.confirm { border-style: solid; border-color: var(--stamp); color: var(--stamp); }
       @keyframes shake {
         20%, 60% { transform: translateX(-5px); }
         40%, 80% { transform: translateX(5px); }
@@ -993,6 +1027,14 @@
         .row.empty-future {
           display: none;
         }
+        .hint-tile {
+          min-height: 30px;
+          padding: 2px 6px;
+          font-size: 9.5px;
+          max-width: calc(var(--cols, 5) * 32px + (var(--cols, 5) - 1) * 3px);
+        }
+        .foia { gap: 4px; margin: 0 0 6px; }
+        .foia button { padding: 4px 7px; font-size: 9.5px; }
         .tile {
           aspect-ratio: auto;
           height: 30px;
@@ -1144,6 +1186,7 @@
           <div class="panel-body">
             <div class="prompt-line" id="promptLine"></div>
             <div class="grid" id="grid"></div>
+            <div class="foia" id="foia"></div>
             <div class="kbd" id="kbd"></div>
             <div class="progress" id="progress"></div>
             <div class="console-links">
@@ -1202,6 +1245,10 @@
             <li>
               <span class="help-num">3</span>
               <span><b>Read the clearance codes:</b> Tile colors show how close your petition was, and green letters lock directly into the document bar.</span>
+            </li>
+            <li>
+              <span class="help-num">4</span>
+              <span><b>File a FOIA request:</b> Stuck? Each bar can request a <b>Vaughn index</b> entry (part of speech and category) or a <b>botched redaction</b> (one letter bleeds through). Each costs a petition and is noted on your receipt.</span>
             </li>
           </ul>
           <div class="help-tiles" aria-hidden="true">
@@ -1305,6 +1352,12 @@
       const STATS_KEY = "epsteindle-stats";
       const SOUND_KEY = "epsteindle-sound";
       const HELP_KEY = "epsteindle-help-seen";
+      const HINTS = {
+        vaughn: { emoji: "\u{1F5C2}\uFE0F", label: "Vaughn index" },
+        leak: { emoji: "\u{1F58D}\uFE0F", label: "Botched redaction" },
+      };
+      const cap = (s) => MAX_GUESSES - s.hints.length;
+      const used = (s) => s.guesses.length + s.hints.length;
 
       const state = {
         totalCount: 0,
@@ -1413,6 +1466,9 @@
             if (res === "good") s.known[i] = ch;
           });
         });
+        s.hints.forEach((h) => {
+          if (h.k === "leak") s.known[h.i] = s.word[h.i];
+        });
       }
 
       function loadRecordSave(fileIdx, efta) {
@@ -1436,6 +1492,7 @@
           bars: state.spans.map((s) => ({
             status: s.status === "revealed" || s.status === "denied" ? s.status : "pending",
             guesses: s.guesses,
+            hints: s.hints,
             draft: s.draft,
           })),
         };
@@ -1450,12 +1507,16 @@
       const squares = () => state.spans.map((s) => (s.status === "revealed" ? "\u{1F7E9}" : "\u2B1B")).join("");
 
       function barTrail(s) {
-        if (!s.evals.length) return s.status === "revealed" ? "\u{1F7E9}" : "\u2B1B";
-        return s.evals.map((ev) => {
+        if (!s.evals.length && !s.hints.length) return s.status === "revealed" ? "\u{1F7E9}" : "\u2B1B";
+        const marks = s.evals.map((ev) => {
           if (ev.every((x) => x === "good")) return "\u{1F7E9}";
           if (ev.some((x) => x === "good" || x === "mid")) return "\u{1F7E8}";
           return "\u2B1C";
-        }).join("");
+        });
+        for (let j = s.hints.length - 1; j >= 0; j--) {
+          marks.splice(Math.min(s.hints[j].at, marks.length), 0, HINTS[s.hints[j].k].emoji);
+        }
+        return marks.join("");
       }
 
       async function boot() {
@@ -1542,6 +1603,8 @@
               text: chunk.t || chunk.w,
               status: "pending",
               guesses: [],
+              hints: [],
+              v: chunk.v || null,
               evals: [],
               draft: "",
               keyState: {},
@@ -1560,12 +1623,17 @@
               s.guesses = Array.isArray(sb.guesses)
                 ? sb.guesses.filter((g) => typeof g === "string" && g.length === s.word.length).map((g) => g.toUpperCase())
                 : [];
+              s.hints = Array.isArray(sb.hints)
+                ? sb.hints
+                    .filter((h) => h && HINTS[h.k] && (h.k !== "leak" || (h.i >= 0 && h.i < s.word.length)))
+                    .filter((h, j, arr) => arr.findIndex((x) => x.k === h.k) === j)
+                : [];
               s.draft = typeof sb.draft === "string" ? sb.draft.toUpperCase().slice(0, s.word.length) : "";
               recomputeSpanDerived(s);
               if (s.guesses.includes(s.word) || sb.status === "revealed") {
                 s.status = "revealed";
                 s.draft = "";
-              } else if (s.guesses.length >= MAX_GUESSES || sb.status === "denied") {
+              } else if (s.guesses.length >= cap(s) || sb.status === "denied") {
                 s.status = "denied";
                 s.draft = "";
               } else {
@@ -1606,7 +1674,7 @@
           el.classList.add("revealed");
           if (isSel) el.classList.add("selected");
           el.textContent = s.text;
-          el.title = `Bar #${s.idx + 1}: Declassified in ${s.guesses.length || 1}/${MAX_GUESSES} petitions. Click to inspect history.`;
+          el.title = `Bar #${s.idx + 1}: Declassified in ${used(s) || 1}/${MAX_GUESSES} petitions. Click to inspect history.`;
           return;
         }
         if (s.status === "denied") {
@@ -1642,7 +1710,7 @@
           cells.appendChild(chEl);
         }
         el.appendChild(cells);
-        el.title = `Bar #${s.idx + 1} (${s.word.length} letters, ${s.guesses.length}/${MAX_GUESSES} attempts used)`;
+        el.title = `Bar #${s.idx + 1} (${s.word.length} letters, ${used(s)}/${MAX_GUESSES} attempts used)`;
       }
 
       const currentSpan = () => state.spans[state.activeIdx] || null;
@@ -1711,8 +1779,8 @@
           if (s.status === "revealed") btn.classList.add("revealed");
           if (s.status === "denied") btn.classList.add("denied");
 
-          let subText = `${s.guesses.length}/${MAX_GUESSES}`;
-          if (s.status === "revealed") subText = `✓ ${s.guesses.length || 1}/${MAX_GUESSES}`;
+          let subText = `${used(s)}/${MAX_GUESSES}`;
+          if (s.status === "revealed") subText = `✓ ${used(s) || 1}/${MAX_GUESSES}`;
           else if (s.status === "denied") subText = `✗ DENIED`;
 
           btn.innerHTML = `<span class="t-top">#${i + 1} (${s.word.length})</span><span class="t-sub">${subText}</span>`;
@@ -1738,11 +1806,12 @@
       }
 
       function updatePromptLine(s) {
+        renderFoia(s);
         const p = $("promptLine");
         delete p.dataset.prev;
         if (s.status === "revealed") {
           p.innerHTML =
-            `<span>Bar #${s.idx + 1} · <b style="color:var(--good)">DECLASSIFIED</b> (${s.guesses.length || 1}/${MAX_GUESSES}): <b>${s.word}</b></span>`;
+            `<span>Bar #${s.idx + 1} · <b style="color:var(--good)">DECLASSIFIED</b> (${used(s) || 1}/${MAX_GUESSES}): <b>${s.word}</b></span>`;
           return;
         }
         if (s.status === "denied") {
@@ -1750,7 +1819,7 @@
             `<span>Bar #${s.idx + 1} · <b style="color:var(--stamp)">DENIED</b> (${MAX_GUESSES}/${MAX_GUESSES}) · Sealed word: <b>${s.word}</b></span>`;
           return;
         }
-        const rem = MAX_GUESSES - s.guesses.length;
+        const rem = cap(s) - s.guesses.length;
         const knownCount = s.known.filter(Boolean).length;
         const knownNote = knownCount > 0 ? ` · <b>${knownCount}/${s.word.length}</b> letters locked` : "";
         p.innerHTML =
@@ -1768,6 +1837,16 @@
         for (let r = 0; r < MAX_GUESSES; r++) {
           const row = document.createElement("div");
           row.className = "row";
+          if (r >= cap(s)) {
+            const h = s.hints[r - cap(s)];
+            row.classList.add("hint-row");
+            const t = document.createElement("div");
+            t.className = "hint-tile";
+            t.textContent = `${HINTS[h.k].emoji} ${h.k === "vaughn" ? `Vaughn index: ${s.v}` : `Botched redaction: letter ${h.i + 1} bled through`}`;
+            row.appendChild(t);
+            g.appendChild(row);
+            continue;
+          }
           const submitted = s.guesses[r];
           const ev = s.evals[r];
           const isCurrentRow = s.status === "pending" && r === s.guesses.length;
@@ -1904,7 +1983,7 @@
         recomputeSpanDerived(s);
 
         const won = guessWord === s.word;
-        const outOfGuesses = !won && s.guesses.length >= MAX_GUESSES;
+        const outOfGuesses = !won && s.guesses.length >= cap(s);
         if (won) s.status = "revealed";
         else if (outOfGuesses) s.status = "denied";
 
@@ -1985,6 +2064,59 @@
         }, 1400);
       }
 
+      function foiaBlock(s, k) {
+        if (cap(s) - s.guesses.length < 2) return "Not enough petitions left to file a FOIA request.";
+        if (s.hints.some((h) => h.k === k)) return "Already filed for this bar.";
+        if (k === "vaughn" && !s.v) return "No Vaughn index entry exists for this redaction.";
+        if (k === "leak" && s.known.filter((c) => !c).length < 2) return "Nothing left worth leaking.";
+        return "";
+      }
+
+      function renderFoia(s) {
+        const wrap = $("foia");
+        wrap.innerHTML = "";
+        wrap.style.display = s.status === "pending" && s.hints.length < 2 ? "" : "none";
+        if (wrap.style.display) return;
+        Object.entries(HINTS).forEach(([k, h]) => {
+          if (s.hints.some((x) => x.k === k)) return;
+          const b = document.createElement("button");
+          b.type = "button";
+          const block = foiaBlock(s, k);
+          b.disabled = !!block;
+          b.textContent = `${h.emoji} ${h.label} \u22121`;
+          b.title = block || (k === "vaughn"
+            ? "Request the official log entry for this bar: part of speech and category. Costs 1 petition."
+            : "Request the PDF where someone used a highlighter instead of a redaction tool. One letter bleeds through. Costs 1 petition.");
+          b.addEventListener("click", () => {
+            if (b.classList.contains("confirm")) return fileFoia(k);
+            b.classList.add("confirm");
+            b.textContent = "Sign to confirm (\u22121 petition)";
+            setTimeout(() => currentSpan() === s && renderFoia(s), 2600);
+          });
+          wrap.appendChild(b);
+        });
+      }
+
+      function fileFoia(k) {
+        const s = currentSpan();
+        if (!s || state.busy || s.status !== "pending" || foiaBlock(s, k)) return;
+        const h = { k, at: s.guesses.length };
+        if (k === "leak") {
+          const open = s.known.map((c, i) => (c ? -1 : i)).filter((i) => i >= 0);
+          h.i = open[Math.floor(Math.random() * open.length)];
+        }
+        s.hints.push(h);
+        recomputeSpanDerived(s);
+        playTone(520, 0.08, "square", 0.03);
+        playTone(390, 0.12, "square", 0.03, 0.09);
+        persist();
+        renderBarTabs();
+        updateProgress();
+        buildGrid(s);
+        paintDocBar(s);
+        updatePromptLine(s);
+      }
+
       function isRecordDone() {
         return state.spans.length > 0 && state.spans.every((s) => s.status !== "pending");
       }
@@ -2000,7 +2132,7 @@
       function updateProgress() {
         const rev = state.spans.filter((s) => s.status === "revealed").length;
         const den = state.spans.filter((s) => s.status === "denied").length;
-        const totalTries = state.spans.reduce((acc, s) => acc + s.guesses.length, 0);
+        const totalTries = state.spans.reduce((acc, s) => acc + used(s), 0);
         $("progress").innerHTML =
           `<span><b>${rev}</b> unredacted · <b>${den}</b> sealed · ${state.spans.length} bars</span>` +
           `<span><b>${totalTries}</b> petitions</span>`;
@@ -2082,7 +2214,7 @@
         state.spans.forEach((s, idx) => {
           const card = document.createElement("div");
           card.className = `end-bar-item ${s.status}`;
-          const triesLabel = s.status === "revealed" ? `${s.guesses.length || 1}/${MAX_GUESSES} petitions` : "SEALED (6/6)";
+          const triesLabel = s.status === "revealed" ? `${used(s) || 1}/${MAX_GUESSES} petitions` : "SEALED (6/6)";
           card.innerHTML =
             `<div class="eb-head"><span>Bar #${idx + 1}</span><span>${triesLabel}</span></div>` +
             `<div class="eb-word">${s.word}</div>` +
@@ -2178,12 +2310,13 @@
           ? `epsteindle docket №${state.docketNo} (${state.doc.efta})`
           : `epsteindle record ${state.doc.efta}`;
         const lines = state.spans.map((s, i) => {
-          const count = s.status === "revealed" ? `${s.guesses.length || 1}/${MAX_GUESSES}` : "X/6";
+          const count = s.status === "revealed" ? `${used(s) || 1}/${MAX_GUESSES}` : "X/6";
           return `#${i + 1} ${barTrail(s)} (${count})`;
         });
+        const foia = state.spans.reduce((acc, s) => acc + s.hints.length, 0);
         const text = [
           header,
-          `${squares()} ${rev}/${state.spans.length} words declassified`,
+          `${squares()} ${rev}/${state.spans.length} words declassified · ${foia ? `${foia} FOIA request${foia === 1 ? "" : "s"}` : "no FOIA requests"}`,
           ...lines,
           "https://epsteindle.org",
         ].join("\n");
