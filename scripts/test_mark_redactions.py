@@ -44,6 +44,28 @@ class RedactionsTest(unittest.TestCase):
         self.assertEqual(result, paras)
         self.assertEqual(stats['boxes'], 0)
 
+    def test_bar_spacing_possessives_and_closing_punctuation(self):
+        for suffix in ["'s trip", '’s trip', ',', '.', ';', ':', ')', ']', '}', '!', '?', '”', '’']:
+            with self.subTest(suffix=suffix):
+                paras = [['Before ', {'doj': 1}, ' '+suffix]]
+                expected = [['Before ', {'doj': 1}, suffix]]
+                self.assertEqual(marker.normalize_bar_spacing(paras), expected)
+                self.assertEqual(marker.normalize_bar_spacing(expected), expected)
+
+    def test_bar_spacing_keeps_words_targets_and_empty_passages(self):
+        target = {'w': 'ISLAND', 't': 'island'}
+        paras = [[], ['Before ', {'doj': 1}, ' after ', target, ' .'],
+                 [target, " 's trip"], [{'doj': 1}, " 'something'"]]
+        self.assertEqual(marker.normalize_bar_spacing(paras), paras)
+        self.assertEqual(marker.normalize_bar_spacing([]), [])
+
+    def test_rebuilt_bar_attaches_possessive(self):
+        self.text(50, 100, 'They cancelled')
+        self.box(140, 90, 180, 103)
+        self.text(190, 100, "'s trip to the island.")
+        result, _ = marker.rebuild(self.page, [["They cancelled 's trip to the island."]])
+        self.assertEqual(marker.passage_text(result), "They cancelled ▮'s trip to the island.")
+
     def test_bad_alignment(self):
         self.text(50, 100, 'Entirely different text.')
         with self.assertRaisesRegex(ValueError, 'alignment coverage'):

@@ -115,6 +115,13 @@ def passage_text(paras):
     return '\n\n'.join(''.join(c if isinstance(c, str) else '▮' if 'doj' in c else c['t'] for c in p) for p in paras)
 
 
+def normalize_bar_spacing(paras):
+    return [[re.sub(r"^\s+(?=(?:['’]s\b|[,.;:!?)\]}”’]))", '', chunk)
+             if isinstance(chunk, str) and i > 0 and isinstance(paragraph[i-1], dict)
+             and 'doj' in paragraph[i-1] else chunk
+             for i, chunk in enumerate(paragraph)] for paragraph in paras]
+
+
 def rebuild(page, paras):
     raw, lines, box_count, dropped = reading_order(page)
     old, target_offsets, old_bars = '', [], []
@@ -211,6 +218,7 @@ def rebuild(page, paras):
         for i, chunk in enumerate(paragraph):
             if isinstance(chunk, dict) and 't' in chunk:
                 paragraph[i] = next(originals)
+    out = normalize_bar_spacing(out)
     if [c for p in out for c in p if isinstance(c, dict) and 't' in c] != targets:
         raise ValueError('target preservation failed')
     new_bars = sum(isinstance(c, dict) and 'doj' in c for p in out for c in p)
