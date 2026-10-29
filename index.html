@@ -1419,6 +1419,8 @@
         const all = load(ARCHIVE_KEY) || {};
         if (all[efta]) return all[efta];
         if (all[fileIdx] && all[fileIdx].efta === efta) return all[fileIdx];
+        const moved = Object.values(all).find((entry) => entry && entry.efta === efta);
+        if (moved) return moved;
         const legacy = load(SAVE_KEY);
         if (legacy && legacy.efta === efta) return legacy;
         return null;
